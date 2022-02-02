@@ -1,0 +1,11 @@
+@use 'main';
+
+.navbar {
+  background-color: #6a759b;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+}
+
+#nav-brand {
+  font-family: $secondary-font-family;
+  font-size: 30px;
+}
