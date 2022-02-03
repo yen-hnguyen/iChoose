@@ -54,9 +54,15 @@ app.get("/", (req, res) => {
   res.render("index");
 });
 
-// app.get("/new", (req, res) => {
-//   res.render("index_new");
-// });
+//POST: login route
+app.post("/login", (req, res) => {
+  res.render("index");
+});
+
+//POST: logout route
+app.post("/logout", (req, res) => {
+  res.render("login");
+});
 
 app.listen(PORT, () => {
   console.log(`Example app listening on port ${PORT}`);
