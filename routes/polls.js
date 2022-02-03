@@ -22,6 +22,11 @@ module.exports = (db) => {
   });
 
   /**
+   * Add new poll
+   */
+  router.post("/new", (req, res) => {});
+
+  /**
    * Browse all polls
    */
   router.get("/", (req, res) => {
