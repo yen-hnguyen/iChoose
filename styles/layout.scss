@@ -1,6 +1,13 @@
-// See: https://sass-lang.com/
+ /* See: https://sass-lang.com/ */
 
-body,
-html {
-  margin: 0;
-}
+ body,
+ html {
+   margin: 0;
+   height: 100%;
+ }
+
+ h1 {
+   text-align: center;
+   font-weight: bold;
+   font-size: 60px;
+ }

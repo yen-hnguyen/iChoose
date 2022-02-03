@@ -1,14 +1,25 @@
-<header>
-  <nav class="navbar navbar-expand-md navbar-dark bg-dark">
-    <a class="navbar-brand" href="/">iChoose</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-      <div class="navbar-nav">
-        <a class="nav-item nav-link" href="/api/polls">My Polls</a>
-        <a class="nav-item nav-link" href="/api/polls/new">Create New Poll</a>
+<nav class="navbar navbar-expand-lg navbar-dark">
+  <div class="container-fluid">
+    <a class="navbar-brand" id="nav-brand" href="/">iChoose</a>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="#">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">My Polls</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Create New Poll</a>
+        </li>
+      </ul>
+      <form class="d-flex">
+        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-light me-2" type="submit">Search</button>
+      </form>
+      <div>
+        <button class="btn btn-outline-light" type="submit">Logout</button>
       </div>
     </div>
-  </nav>
-</header>
+  </div>
+</nav>
