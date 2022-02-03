@@ -1,0 +1,26 @@
+#form-wrapper {
+  display: flex;
+  margin: auto;
+  justify-content: center;
+  align-items: center;
+  padding: 70px;
+  border-radius: 25px;
+  box-shadow: rgba(0, 0, 0, 0.56) 0px 22px 70px 4px;
+}
+
+.form-group {
+  padding:10px;
+  width: 500px;
+}
+
+.form-control-login {
+  margin-top: 10px;
+}
+
+.submit-button {
+  width: 120px;
+  height: 45px;
+  border-radius: 25px;
+  background-color: #5c5470;
+  color:white
+}
