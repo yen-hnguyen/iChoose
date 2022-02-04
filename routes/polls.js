@@ -18,7 +18,7 @@ module.exports = (db) => {
 
   //GET: New Poll link
   router.get("/new", (req, res) => {
-    res.render("index_new");
+    res.render("new_poll");
   });
 
   /**
