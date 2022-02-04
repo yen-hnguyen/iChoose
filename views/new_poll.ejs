@@ -10,7 +10,12 @@
       <%- include('partials/_header') %>
     </header>
 
-    <h1>New Poll</h1>
+    <h1>Create a new Poll!</h1>
+    <form action="/" method="POST" class="poll-creation">
+      <div class="poll-name">
+        <label for="poll-title">Poll Name:</label>
+        <input class="input-fields" type="text" required name="poll_title" placeholder="What question do you want to ask?">
+      </div>
   </body>
 
 </html>
