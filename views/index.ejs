@@ -1,16 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
 
-  <head>
-    <%- include('partials/_head') %>
-  </head>
+<head>
 
-  <body>
-    <header>
-      <%- include('partials/_header') %>
-    </header>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.min.js"></script>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@0.4.0/dist/chartjs-plugin-datalabels.min.js">
+  </script>
 
-    <h1>Recent Polls</h1>
-  </body>
+  <%- include('partials/_head') %>
+
+</head>
+
+<body>
+  <header>
+    <%- include('partials/_header') %>
+  </header>
+
+  <h1>Recent Polls</h1>
+<section id="chosen-polls"></section>
+
+
+  <script type="module" src="/scripts/recent_polls.js"></script>
+</body>
 
 </html>
