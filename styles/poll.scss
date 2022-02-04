@@ -1,0 +1,29 @@
+// .poll-container {
+//   display: flex;
+//   justify-content: space-around;
+// }
+
+.voting-options, .result-chart {
+  width: 700px;
+  height: 600px;
+}
+
+.voting-options {
+  border-radius: 25px;
+  box-shadow: rgba(0, 0, 0, 0.56) 0px 22px 70px 4px;
+}
+
+.options {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 600px;
+  height: 100px;
+  list-style: none;
+  border: 1px solid black;
+  border-radius: 25px;
+  font-size: 50px;
+  margin-top: 20px;
+  background-color: #352f44;
+  color: #dbd8e3;
+}
