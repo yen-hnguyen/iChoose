@@ -1,4 +1,4 @@
-import { assignChartParams } from "./poll_params.js"
+import { assignChartParams } from "./chart_params.js"
 
 const polls = document.getElementById("chosen-polls");
 polls.style.display = "flex";
