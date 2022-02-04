@@ -1,11 +1,12 @@
 #form-wrapper {
   display: flex;
-  margin: auto;
   justify-content: center;
-  align-items: center;
-  padding: 70px;
+  margin: auto;
+  padding: 60px;
   border-radius: 25px;
   box-shadow: rgba(0, 0, 0, 0.56) 0px 22px 70px 4px;
+  width: 60%;
+  margin-top: 150px;
 }
 
 .form-group {
@@ -13,13 +14,14 @@
   width: 500px;
 }
 
-.form-control-login {
+#login-form input {
   margin-top: 10px;
 }
 
 .submit-button {
   width: 120px;
   height: 45px;
+  margin-top: 30px;
   border-radius: 25px;
   background-color: #5c5470;
   color:white
