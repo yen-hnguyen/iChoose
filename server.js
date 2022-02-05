@@ -58,6 +58,11 @@ app.get("/login", (req, res) => {
   res.render("login");
 });
 
+// Comment to delete later -> this route should be poll:id
+app.get("/poll", (req, res) => {
+  res.render("poll_submission");
+});
+
 //POST: login route
 app.post("/login", (req, res) => {
   res.render("index");
