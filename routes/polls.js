@@ -10,19 +10,6 @@ const domain = process.env.MAILGUN_DOMAIN;
 // const mg = mailgun.client({username: 'api', key: apiKey});
 
 
-const polls = [{
-  id: 1,
-  user_id: 2,
-  title: "A",
-  description: "B",
-},
-{
-  id: 2,
-  user_id: 1,
-  title: "X",
-  description: "Y",
-}];
-
 module.exports = (db) => {
 
 
@@ -43,15 +30,15 @@ module.exports = (db) => {
   /**
    * Add new poll
    */
-  router.post("/new", (req, res) => {});
+  router.post("/new", (req, res) => { });
 
-  /**
-   * Browse all polls
-   */
+  //Browse all polls
   router.get("/", (req, res) => {
-    // res.json(polls);
-
-    //After attaching database:
+  /**
+  * Get a total submission points.
+  * @param {String}.
+  * @return {Promise<{}>} JSON on /polls page.
+  */
     const queryString = `SELECT polls.id, polls.description, choices.description AS choice, sum(point) AS total_points
     FROM polls JOIN choices ON polls.id = poll_id
     JOIN submissions ON choices.id = choice_id
@@ -59,7 +46,6 @@ module.exports = (db) => {
     db.query(queryString)
       .then(data => {
         const polls = data.rows;
-        console.log(polls);
         res.json({ polls });
       })
       .catch(err => {
