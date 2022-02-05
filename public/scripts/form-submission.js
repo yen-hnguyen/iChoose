@@ -1,7 +1,7 @@
 $(document).ready(function() {
 
   $(".poll-creation").submit(function(event) {
-    event.preventDefault();
+    // event.preventDefault();
 
     console.log("Form submitted...ajax call")
 
