@@ -24,17 +24,14 @@ const polls = [{
 }];
 
 module.exports = (db) => {
-  router.get('/login', (req, res) => {
-    // req.session.user_id = req.params.id;
-    res.redirect('/');
-  });
+
 
   //GET: New Poll link
-  router.get("/create", (req, res) => {
+  router.get("/new", (req, res) => {
     res.render("new_poll");
   });
 
-  router.post("/create", (req, res) => {
+  router.post("/new", (req, res) => {
     const formData = req.body.text;
   });
 

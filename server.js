@@ -58,9 +58,17 @@ app.get("/login", (req, res) => {
   res.render("login");
 });
 
+app.get("/new", (req, res) => {
+  res.render("new_poll");
+});
+
 // Comment to delete later -> this route should be poll:id
 app.get("/poll", (req, res) => {
   res.render("poll_submission");
+});
+
+app.get("/result", (req, res) => {
+  res.render("poll_result");
 });
 
 //POST: login route
@@ -68,9 +76,13 @@ app.post("/", (req, res) => {
   res.render("index");
 });
 
+app.post("/login", (req, res) => {
+  res.redirect("/");
+});
+
 //POST: logout route
 app.post("/logout", (req, res) => {
-  res.render("login");
+  res.redirect("/login");
 });
 
 app.listen(PORT, () => {
