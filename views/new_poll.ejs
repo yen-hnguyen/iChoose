@@ -3,6 +3,7 @@
 
   <head>
     <%- include('partials/_head') %>
+
   </head>
 
   <body>
@@ -17,6 +18,7 @@
         <label for="poll-title">Poll Name:</label>
         <input class="input-fields" type="text" required name="poll_title" placeholder="Enter a Poll Name">
       </div>
+
       <!-- DESCRIPTION FIELD -->
       <div class="poll_description">
         <label for="poll-title">Description:</label>
@@ -27,6 +29,7 @@
         <label for="owner_email">Email: </label>
         <input class="input-fields" type="email" required name="email" placeholder="Enter an Email">
       </div>
+
       <!-- OPTIONS FIELDS 1-->
       <div id="option-fields1">
         <div class="option-fields">
@@ -35,6 +38,7 @@
             <input class="name-field" type="text" required name="poll_options" placeholder="name">
             <input class="description-field" type="text" name="description" placeholder="Description">
           </div>
+
           <!-- OPTION FIELDS 2 -->
         <div class="option-fields2">
           <label for="options-label">Option 2:</label>
@@ -42,10 +46,12 @@
             <input class="name-field" type="text" required name="poll_options" placeholder="name">
             <input class="description-field" type="text" name="description" placeholder="Description">
           </div>
+
           <!-- ADD OPTIONS -->
       <div id="add-option">
-        <button class="buttons" id="add-button" type="button">Add Option...</button>
+        <button class="buttons" id="add-button" type="button">Add Option</button>
       </div>
+
       <!-- SUBMIT SECITON -->
       <div id="submit-container">
         <button class="buttons" id="submit-button" type="submit">Submit</button>
