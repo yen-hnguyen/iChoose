@@ -21,18 +21,18 @@
     <form action="/new" method="POST" class="poll-creation">
       <div class="poll-name">
         <label for="poll-title">Poll Name:</label>
-        <input class="input-fields" type="text" name="poll_title" placeholder="Enter a Poll Name" required>
+        <input class="input-fields" autocomplete="off" type="text" name="poll_title" placeholder="Enter a Poll Name" required>
       </div>
 
       <!-- DESCRIPTION FIELD -->
       <div class="poll_description">
         <label for="poll-title">Description:</label>
-      <input class="description-field" type="text" name="description" placeholder="Description" required>
+      <input class="description-field" autocomplete="off" type="text" name="description" placeholder="Description" required>
 
       <!-- EMAIL FIELD -->
       <div id="email-field">
         <label for="owner_email">Email: </label>
-        <input type="email" required name="email" placeholder="Enter an Email">
+        <input type="email" autocomplete="off" required name="email" placeholder="Enter an Email">
       </div>
 
       <!-- OPTIONS FIELDS 1-->
@@ -40,24 +40,24 @@
         <div class="option-fields">
           <label for="options-label">Option 1:</label>
           <div class="options-input">
-            <input class="name-field" type="text" required name="poll_options" placeholder="name">
-            <input class="description-field" type="text" name="description" placeholder="Description">
+            <input class="name-field" autocomplete="off" type="text" required name="poll_options" placeholder="name">
+            <input class="description-field" autocomplete="off" type="text" name="description" placeholder="Description">
           </div>
 
           <!-- OPTION FIELDS 2 -->
         <div class="option-fields2">
           <label for="options-label">Option 2:</label>
           <div class="options-input">
-            <input class="name-field" type="text" required name="poll_options" placeholder="name">
-            <input class="description-field" type="text" name="description" placeholder="Description">
+            <input class="name-field" type="text" autocomplete="off" required name="poll_options" placeholder="name">
+            <input class="description-field" type="text" autocomplete="off" name="description" placeholder="Description">
           </div>
 
           <!-- OPTION FIELDS 3 -->
         <div class="option-fields3">
           <label for="options-label">Option 3:</label>
           <div class="options-input">
-            <input class="name-field" type="text" required name="poll_options" placeholder="name">
-            <input class="description-field" type="text" name="description" placeholder="Description">
+            <input class="name-field" type="text" autocomplete="off" required name="poll_options" placeholder="name">
+            <input class="description-field" type="text" autocomplete="off" name="description" placeholder="Description">
           </div>
 
           <!-- OPTION FIELDS 4 -->
@@ -65,7 +65,7 @@
           <label for="options-label">Option 4:</label>
           <div class="options-input">
             <input class="name-field" type="text" required name="poll_options" placeholder="name">
-            <input class="description-field" type="text" name="description" placeholder="Description">
+            <input class="description-field" type="text" autocomplete="off" name="description" placeholder="description">
           </div>
 
           <!-- ADD OPTIONS -->
