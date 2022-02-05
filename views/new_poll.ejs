@@ -10,12 +10,36 @@
       <%- include('partials/_header') %>
     </header>
 
+    <!-- BODY TITLE -->
     <h1>Create a new Poll!</h1>
     <form action="/" method="POST" class="poll-creation">
       <div class="poll-name">
         <label for="poll-title">Poll Name:</label>
-        <input class="input-fields" type="text" required name="poll_title" placeholder="What question do you want to ask?">
+        <input class="input-fields" type="text" required name="poll_title" placeholder="Enter a Poll Name?">
       </div>
+      <!-- EMAIL FIELD -->
+      <div id="email-field">
+        <label for="owner_email">Email: </label>
+        <input class="input-fields" type="email" required name="owner_email" placeholder="someone@something.com">
+      </div>
+      <!-- OPTIONS FIELDS 1-->
+      <div id="outer-option-fields">
+        <div class="option-fields">
+          <label for="options-label">Option 1:</label>
+          <div class="options-input">
+            <input class="name-field" type="text" required name="poll_options" placeholder="name">
+            <input class="description-field" type="text" name="option_desc" placeholder="description (optional)">
+          </div>
+          <!-- OPTION FIELDS 2 -->
+        <div class="option-fields">
+          <label for="options-label">Option 2:</label>
+          <div class="options-input">
+            <input class="name-field" type="text" required name="poll_options" placeholder="name">
+            <input class="description-field" type="text" name="option_desc" placeholder="description (optional)">
+          </div>
+        </div>
+      </div>
+        </div>
   </body>
 
 </html>
