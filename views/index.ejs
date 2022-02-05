@@ -1,16 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
 
-  <head>
-    <%- include('partials/_head') %>
-  </head>
+<head>
 
-  <body>
-    <header>
-      <%- include('partials/_header') %>
-    </header>
 
-    <h1>Recent Polls</h1>
-  </body>
+
+
+  <%- include('partials/_head') %>
+
+</head>
+
+<body>
+  <header>
+    <%- include('partials/_header') %>
+  </header>
+
+  <h1>Recent Polls</h1>
+<section id="chosen-polls"></section>
+
+
+  <script type="module" src="/scripts/recent_polls.js"></script>
+</body>
 
 </html>
