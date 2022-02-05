@@ -49,12 +49,17 @@ module.exports = (db) => {
    * Browse all polls
    */
   router.get("/", (req, res) => {
-    res.json(polls);
-    /*
+    // res.json(polls);
+
     //After attaching database:
-    db.query(`SELECT * FROM polls;`)
+    const queryString = `SELECT polls.id, polls.description, choices.description AS choice, sum(point) AS total_points
+    FROM polls JOIN choices ON polls.id = poll_id
+    JOIN submissions ON choices.id = choice_id
+    GROUP BY polls.id, choices.description;`;
+    db.query(queryString)
       .then(data => {
         const polls = data.rows;
+        console.log(polls);
         res.json({ polls });
       })
       .catch(err => {
@@ -62,7 +67,7 @@ module.exports = (db) => {
           .status(500)
           .json({ error: err.message });
       });
-    */
+
   });
 
   /**
