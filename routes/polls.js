@@ -15,10 +15,23 @@ const polls = [{
 }];
 
 module.exports = (db) => {
+  router.get('/login', (req, res) => {
+    // req.session.user_id = req.params.id;
+    res.redirect('/');
+  });
 
   //GET: New Poll link
-  router.get("/new", (req, res) => {
+  router.get("/create", (req, res) => {
     res.render("new_poll");
+  });
+
+  router.post("/create", (req, res) => {
+    const formData = req.body.text;
+  });
+
+  // Result page
+  router.get("/result", (req, res) => {
+    res.render("poll_result");
   });
 
   /**
@@ -74,8 +87,6 @@ module.exports = (db) => {
   /**
    * Add: User creates a poll
    */
-
-
 
 
   /**

@@ -64,7 +64,7 @@ app.get("/poll", (req, res) => {
 });
 
 //POST: login route
-app.post("/login", (req, res) => {
+app.post("/", (req, res) => {
   res.render("index");
 });
 
