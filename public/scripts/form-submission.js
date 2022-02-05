@@ -1,6 +1,6 @@
-$(document).ready(function() {
+$(document).ready(function () {
 
-  $(".poll-creation").submit(function(event) {
+  $(".poll-creation").submit(function (event) {
     // event.preventDefault();
 
     console.log("Form submitted...ajax call")
@@ -20,6 +20,6 @@ $(document).ready(function() {
         console.log("GET server using Ajax.");
       })
     });
-});
+  });
 });
 

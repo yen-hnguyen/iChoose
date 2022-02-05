@@ -19,7 +19,8 @@ module.exports = (db) => {
   });
 
   router.post("/new", (req, res) => {
-    const formData = req.body.text;
+    // const formData = req.body.text;
+    console.log(req.body);
   });
 
   // Result page
