@@ -1,5 +1,14 @@
 const express = require('express');
 const router = express.Router();
+const formData = require('form-data');
+const Mailgun = require('mailgun.js');
+
+require('dotenv').config();
+const apiKey = process.env.MAILGUN_API;
+const domain = process.env.MAILGUN_DOMAIN;
+const mailgun = new Mailgun(formData);
+const mg = mailgun.client({username: 'api', key: apiKey});
+
 
 const polls = [{
   id: 1,
@@ -15,11 +24,6 @@ const polls = [{
 }];
 
 module.exports = (db) => {
-  router.get('/login', (req, res) => {
-    // req.session.user_id = req.params.id;
-    res.redirect('/');
-  });
-
   //GET: New Poll link
   router.get("/create", (req, res) => {
     res.render("new_poll");
