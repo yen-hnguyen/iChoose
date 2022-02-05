@@ -25,8 +25,17 @@ const polls = [{
 
 module.exports = (db) => {
   //GET: New Poll link
-  router.get("/new", (req, res) => {
+  router.get("/create", (req, res) => {
     res.render("new_poll");
+  });
+
+  router.post("/create", (req, res) => {
+    const formData = req.body.text;
+  });
+
+  // Result page
+  router.get("/result", (req, res) => {
+    res.render("poll_result");
   });
 
   /**
