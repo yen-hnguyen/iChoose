@@ -4,7 +4,6 @@ $(document).ready(function () {
 
   //GET poll from JSON
   $.get("/polls", data => {
-
     const choiceArray = getChoices(data);
     const pointArray = getPoints(data);
 
