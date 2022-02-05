@@ -13,21 +13,22 @@
 
     <!-- BODY TITLE -->
     <h1>Create a new Poll!</h1>
+    <div id="form-wrapper">
     <form action="/" method="POST" class="poll-creation">
       <div class="poll-name">
         <label for="poll-title">Poll Name:</label>
-        <input class="input-fields" type="text" required name="poll_title" placeholder="Enter a Poll Name">
+        <input class="input-fields" type="text" name="poll_title" placeholder="Enter a Poll Name" required>
       </div>
 
       <!-- DESCRIPTION FIELD -->
       <div class="poll_description">
         <label for="poll-title">Description:</label>
-      <input class="description-field" type="text" name="description" placeholder="Description">
+      <input class="description-field" type="text" name="description" placeholder="Description" required>
 
       <!-- EMAIL FIELD -->
       <div id="email-field">
         <label for="owner_email">Email: </label>
-        <input class="input-fields" type="email" required name="email" placeholder="Enter an Email">
+        <input type="email" required name="email" placeholder="Enter an Email">
       </div>
 
       <!-- OPTIONS FIELDS 1-->
@@ -70,7 +71,8 @@
 
       <!-- SUBMIT SECITON -->
       <div id="submit-container">
-        <button class="buttons" id="submit-button" type="submit">Submit</button>
+        <div class='d-flex justify-content-center'>
+          <button type='submit' class='submit-button'>Submit</button>
       </div>
     </form>
         </div>
