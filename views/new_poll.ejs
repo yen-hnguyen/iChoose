@@ -6,7 +6,7 @@
     <!-- External JS -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <!-- App JS -->
-    <script type="text/javascript" src="../scripts/form-submission.js" ></script>
+    <script type="text/javascript" src="../scripts/form-submission.js"></script>
 
   </head>
 
@@ -18,71 +18,61 @@
     <!-- BODY TITLE -->
     <h1>Create a new Poll!</h1>
     <div id="form-wrapper">
-    <form action="/new" method="POST" class="poll-creation">
-      <div class="poll-name">
-        <label for="poll-title">Poll Name:</label>
-        <input class="input-fields" type="text" name="poll_title" placeholder="Enter a Poll Name" required>
-      </div>
+      <form action="/polls/new" method="POST" class="poll-creation">
+        <div class="poll-name">
+          <label for="poll-title">Poll Name:</label>
+          <input class="input-fields" type="text" name="poll_title" placeholder="Enter a Poll Name" required>
+        </div>
 
-      <!-- DESCRIPTION FIELD -->
-      <div class="poll_description">
-        <label for="poll-title">Description:</label>
-      <input class="description-field" type="text" name="description" placeholder="Description" required>
+        <!-- DESCRIPTION FIELD -->
+        <div class="poll_description">
+          <label for="poll-title">Description:</label>
+          <input class="description-field" type="text" name="description" placeholder="Description" required>
+        </div>
+        <!-- EMAIL FIELD -->
+        <div id="email-field">
+          <label for="owner_email">Email: </label>
+          <input type="email" required name="email" placeholder="Enter an Email">
+        </div>
 
-      <!-- EMAIL FIELD -->
-      <div id="email-field">
-        <label for="owner_email">Email: </label>
-        <input type="email" required name="email" placeholder="Enter an Email">
-      </div>
-
-      <!-- OPTIONS FIELDS 1-->
-      <div id="option-fields1">
-        <div class="option-fields">
+        <!-- OPTIONS FIELDS 1-->
+        <div id="option-fields1">
           <label for="options-label">Option 1:</label>
-          <div class="options-input">
-            <input class="name-field" type="text" required name="poll_options" placeholder="name">
-            <input class="description-field" type="text" name="description" placeholder="Description">
-          </div>
+          <input class="name-field" type="text" required name="poll_options" placeholder="name">
+          <!-- <input class="description-field" type="text" name="description" placeholder="Description"> -->
+        </div>
 
-          <!-- OPTION FIELDS 2 -->
+        <!-- OPTION FIELDS 2 -->
         <div class="option-fields2">
           <label for="options-label">Option 2:</label>
-          <div class="options-input">
-            <input class="name-field" type="text" required name="poll_options" placeholder="name">
-            <input class="description-field" type="text" name="description" placeholder="Description">
-          </div>
+          <input class="name-field" type="text" required name="poll_options" placeholder="name">
+          <!-- <input class="description-field" type="text" name="description" placeholder="Description"> -->
+        </div>
 
-          <!-- OPTION FIELDS 3 -->
+        <!-- OPTION FIELDS 3 -->
         <div class="option-fields3">
           <label for="options-label">Option 3:</label>
-          <div class="options-input">
-            <input class="name-field" type="text" required name="poll_options" placeholder="name">
-            <input class="description-field" type="text" name="description" placeholder="Description">
-          </div>
+          <input class="name-field" type="text" required name="poll_options" placeholder="name">
+          <!-- <input class="description-field" type="text" name="description" placeholder="Description"> -->
+        </div>
 
-          <!-- OPTION FIELDS 4 -->
+        <!-- OPTION FIELDS 4 -->
         <div class="option-fields4">
           <label for="options-label">Option 4:</label>
-          <div class="options-input">
-            <input class="name-field" type="text" required name="poll_options" placeholder="name">
-            <input class="description-field" type="text" name="description" placeholder="Description">
-          </div>
-
-          <!-- ADD OPTIONS -->
-      <div id="add-option">
-        <button class="buttons" id="add-button" type="button">Add Option</button>
-      </div>
-
-      <!-- SUBMIT SECITON -->
-      <div id="submit-container">
-        <div class='d-flex justify-content-center'>
-          <button type='submit' class='submit-button'>Submit</button>
-      </div>
-
-    </form>
+          <input class="name-field" type="text" required name="poll_options" placeholder="name">
+          <!-- <input class="description-field" type="text" name="description" placeholder="Description"> -->
         </div>
-      </div>
+
+        <!-- ADD OPTIONS -->
+        <div id="add-option">
+          <button class="buttons" id="add-button" type="button">Add Option</button>
         </div>
+
+        <!-- SUBMIT SECITON -->
+        <button type='submit' id='poll-submit-button'>Submit</button>
+
+      </form>
+    </div>
   </body>
 
 </html>

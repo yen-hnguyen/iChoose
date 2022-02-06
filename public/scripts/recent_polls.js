@@ -1,34 +1,60 @@
 import { assignChartParams } from "./chart_params.js"
 
-const polls = document.getElementById("chosen-polls");
-polls.style.display = "flex";
-polls.style.justifyContent = "space-around";
-polls.innerHTML = `
-<div class="recent-polls" style="width: 425px;">
-  <h5 id="title1"></h5>
-  <canvas id="chart1" width="400" height="400"></canvas>
-</div>
-<div class="recent-polls" style="width: 425px;">
-  <h5 id="title2"></h5>
-  <canvas id="chart2" width="400" height="400"></canvas>
-</div>
-`;
+$(document).ready(function () {
 
-const title1 = "Which movie to watch on the weekend?";
-document.getElementById("title1").append(title1);
-const title2 = "What's the lunch plan on Friday?";
-document.getElementById("title2").append(title2);
+  //GET poll from JSON
+  $.get("/polls", data => {
+    const choiceArray = getChoices(data.polls.slice(0,4));
+    const pointArray = getPoints(data.polls.slice(0,4));
 
-const movieLabels = ["Matrix Revolutions", "Spiderman", "John Wick 4", "Avatar 2"];
-const pollVotes1 = [5, 6, 4, 7];
-const foodLabels = ["Sushi", "Tacos", "Pizza", "Ramen"];
-const pollVotes2 = [5, 6, 4, 7];
+    renderPollData(data.polls[0].description);
 
-const ctx = document.getElementById('chart1');
-const ctx2 = document.getElementById('chart2');
+    const ctx = document.getElementsByClassName("chart")[0];
+    assignChartParams(choiceArray, pointArray, ctx);
 
-assignChartParams(movieLabels, pollVotes1, ctx);
-assignChartParams(foodLabels, pollVotes2, ctx2);
+    const choiceArray2 = getChoices(data.polls.slice(4));
+    const pointArray2 = getPoints(data.polls.slice(4));
+
+    renderPollData(data.polls[4].description);
+
+    const ctx2 = document.getElementsByClassName("chart")[1];
+    assignChartParams(choiceArray2, pointArray2, ctx2);
+
+
+  });
+
+  const getChoices = (data) => {
+    const choiceArray = [];
+    for (const choice of data) {
+      choiceArray.push(choice.choice);
+    }
+    return choiceArray;
+  }
+
+  const getPoints = (data) => {
+    const pointArray = [];
+    for (const point of data) {
+      pointArray.push(Number(point.total_points));
+    }
+    return pointArray;
+  }
+
+  const renderPollData = (data) => {
+    const polls = $("#chosen-polls");
+    const pollElement = `
+  <div class="recent-polls" style="width: 425px;">
+   <h5 class="title">${data}</h5>
+   <canvas class="chart" width="400" height="400"></canvas>
+  </div>
+  `;
+    polls.append(pollElement);
+    polls.css({ "display": "flex", "justify-content": "space-around" });
+  };
+
+});
+
+
+
 
 
 
