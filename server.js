@@ -36,7 +36,7 @@ app.use(
 app.use(express.static("public"));
 app.use(cookieSession({
   name: 'session',
-  key: [ 'iChoose' ]
+  keys: [ 'iChoose' ]
 }));
 
 // Separated Routes for each Resource
