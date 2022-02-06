@@ -4,21 +4,28 @@ $(document).ready(function () {
 
   //GET poll from JSON
   $.get("/polls", data => {
-    const choiceArray = getChoices(data);
-    const pointArray = getPoints(data);
+    const choiceArray = getChoices(data.polls.slice(0,4));
+    const pointArray = getPoints(data.polls.slice(0,4));
 
     renderPollData(data.polls[0].description);
 
-    const ctx = $('#chart1');
+    const ctx = document.getElementsByClassName("chart")[0];
     assignChartParams(choiceArray, pointArray, ctx);
 
-    const ctx2 = $('#chart2');
-    assignChartParams(choiceArray, pointArray, ctx2);
+    const choiceArray2 = getChoices(data.polls.slice(4));
+    const pointArray2 = getPoints(data.polls.slice(4));
+
+    renderPollData(data.polls[4].description);
+
+    const ctx2 = document.getElementsByClassName("chart")[1];
+    assignChartParams(choiceArray2, pointArray2, ctx2);
+
+
   });
 
   const getChoices = (data) => {
     const choiceArray = [];
-    for (const choice of data.polls) {
+    for (const choice of data) {
       choiceArray.push(choice.choice);
     }
     return choiceArray;
@@ -26,7 +33,7 @@ $(document).ready(function () {
 
   const getPoints = (data) => {
     const pointArray = [];
-    for (const point of data.polls) {
+    for (const point of data) {
       pointArray.push(Number(point.total_points));
     }
     return pointArray;
@@ -36,12 +43,8 @@ $(document).ready(function () {
     const polls = $("#chosen-polls");
     const pollElement = `
   <div class="recent-polls" style="width: 425px;">
-   <h5 id="title1">${data}</h5>
-   <canvas id="chart1" width="400" height="400"></canvas>
-  </div>
-  <div class="recent-polls" style="width: 425px;">
-   <h5 id="title2">${data}</h5>
-   <canvas id="chart2" width="400" height="400"></canvas>
+   <h5 class="title">${data}</h5>
+   <canvas class="chart" width="400" height="400"></canvas>
   </div>
   `;
     polls.append(pollElement);
