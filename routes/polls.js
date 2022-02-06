@@ -36,10 +36,12 @@ module.exports = (db) => {
   //   res.render("new_poll");
   // });
 
+  /**
+   * Add new poll
+   */
   router.post("/new", (req, res) => {
     const data = req.body;
-
-    const userID = 1; // use cookie session to retrieve this
+    const userID = req.session.userId;
     const title = data.poll_title;
     const description = data.description;
     const email = data.email;
@@ -96,7 +98,7 @@ module.exports = (db) => {
       })
       .then(() => {
         console.log("Yay!!!");
-        res.redirect('/');
+        res.redirect(`/polls/${pollKey}`);
       })
       .catch(err => {
         res
@@ -104,16 +106,6 @@ module.exports = (db) => {
           .json({ error: err.message });
       });
   });
-
-  // Result page
-  // router.get("/result", (req, res) => {
-  //   res.render("poll_result");
-  // });
-
-  /**
-   * Add new poll
-   */
-  router.post("/new", (req, res) => { });
 
   //Browse all polls
   router.get("/", (req, res) => {
@@ -141,11 +133,20 @@ module.exports = (db) => {
   });
 
   /**
-   * Read poll with id
+   * Poll submission page
    */
   router.get("/:id", (req, res) => {
-    const id = req.params.id;
-    res.json(polls[id - 1]);
+    // const pollKey = req.params.id;
+    // console.log(pollKey);
+    // const queryString = `SELECT polls.id, polls.title, polls.description, choices.title AS choice, sum(point) AS total_points
+    // FROM polls
+    // JOIN choices ON polls.id = poll_id
+    // JOIN submissions ON choices.id = choice_id
+    // WHERE polls.submission_link LIKE '%${pollKey}'
+    // GROUP BY polls.id, choices.title
+    // ORDER by polls.id DESC;`;
+
+
     /*
     db.query(`SELECT * FROM polls WHERE id = $1;`, [id])
       .then(data => {
@@ -158,6 +159,26 @@ module.exports = (db) => {
           .json({ error: err.message });
       });
     */
+  });
+
+  /**
+   * Poll result / admin page
+   */
+  router.get("/:id/result", (req, res) => {
+    const pollKey = req.params.id;
+
+    const queryString = `SELECT polls.id, polls.title, polls.description, choices.title AS choice, sum(point) AS total_points
+    FROM polls 
+    JOIN choices ON polls.id = poll_id
+    JOIN submissions ON choices.id = choice_id
+    WHERE polls.admin_link LIKE '%${pollKey}'
+    GROUP BY polls.id, choices.title
+    ORDER by polls.id DESC;`;
+
+    title = polls.title;
+
+
+    res.render("poll_result", templateVars);
   });
 
   /**
