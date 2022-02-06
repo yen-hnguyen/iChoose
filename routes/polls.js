@@ -1,15 +1,15 @@
 const express = require('express');
 const { render } = require('express/lib/response');
 const router = express.Router();
-// const formData = require('form-data');
+const formData = require('form-data');
 const Mailgun = require('mailgun.js');
 // const { generateRandomString } = require('./public/scripts/helpers');
 
 require('dotenv').config();
 const apiKey = process.env.MAILGUN_API;
 const domain = process.env.MAILGUN_DOMAIN;
-// const mailgun = new Mailgun(formData);
-// const mg = mailgun.client({username: 'api', key: apiKey});
+const mailgun = new Mailgun(formData);
+const mg = mailgun.client({username: 'api', key: apiKey});
 
 
 const polls = [{
@@ -32,9 +32,9 @@ const generateRandomString = function() {
 
 module.exports = (db) => {
   //GET: New Poll link
-  router.get("/new", (req, res) => {
-    res.render("new_poll");
-  });
+  // router.get("/polls/new", (req, res) => {
+  //   res.render("new_poll");
+  // });
 
   router.post("/new", (req, res) => {
     const data = req.body;
@@ -45,7 +45,7 @@ module.exports = (db) => {
     const email = data.email;
     const pollOptions = data.poll_options;
     const pollKey = generateRandomString();
-    const admin_link = `http://localhost:8080/polls/${pollKey}/result`; // should we add poll id here? random string
+    const admin_link = `http://localhost:8080/polls/${pollKey}/result`;
     const submission_link = `http://localhost:8080/polls/${pollKey}`;
 
     const queryString = ` 
