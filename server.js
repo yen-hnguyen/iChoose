@@ -5,8 +5,10 @@ require("dotenv").config();
 const PORT = process.env.PORT || 8080;
 const sassMiddleware = require("./lib/sass-middleware");
 const express = require("express");
+const bodyParser = require("body-parser");
 const app = express();
 const morgan = require("morgan");
+const cookieSession = require('cookie-session');
 
 // PG database client/connection setup
 const { Pool } = require("pg");
@@ -20,7 +22,7 @@ db.connect();
 app.use(morgan("dev"));
 
 app.set("view engine", "ejs");
-app.use(express.urlencoded({ extended: true }));
+app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use(
   "/styles",
@@ -32,6 +34,10 @@ app.use(
 );
 
 app.use(express.static("public"));
+app.use(cookieSession({
+  name: 'session',
+  keys: [ 'iChoose' ]
+}));
 
 // Separated Routes for each Resource
 // Note: Feel free to replace the example routes below with your own
@@ -72,12 +78,13 @@ app.get("/result", (req, res) => {
 });
 
 //POST: login route
-app.post("/", (req, res) => {
-  res.render("index");
-});
 
 app.post("/login", (req, res) => {
-  res.redirect("/");
+  const email = req.body.email;
+  if (email) {
+    return res.redirect("/");
+  }
+  res.render("login");
 });
 
 //POST: logout route
