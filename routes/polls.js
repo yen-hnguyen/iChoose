@@ -1,13 +1,13 @@
 const express = require('express');
 const router = express.Router();
-const formData = require('form-data');
+// const formData = require('form-data');
 const Mailgun = require('mailgun.js');
 
 require('dotenv').config();
 const apiKey = process.env.MAILGUN_API;
 const domain = process.env.MAILGUN_DOMAIN;
-const mailgun = new Mailgun(formData);
-const mg = mailgun.client({username: 'api', key: apiKey});
+// const mailgun = new Mailgun(formData);
+// const mg = mailgun.client({username: 'api', key: apiKey});
 
 
 const polls = [{
@@ -25,10 +25,18 @@ const polls = [{
 
 module.exports = (db) => {
 
+  router.get("/poll", (req, res) => {
+    res.render("my_polls");
+  });
+
 
   //GET: New Poll link
   router.get("/new", (req, res) => {
     res.render("new_poll");
+  });
+
+  router.get("/polls", (req, res) => {
+    res.render("my_polls");
   });
 
   router.post("/new", (req, res) => {
@@ -64,6 +72,7 @@ module.exports = (db) => {
       });
     */
   });
+
 
   /**
    * Read poll with id
