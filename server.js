@@ -78,12 +78,13 @@ app.get("/result", (req, res) => {
 });
 
 //POST: login route
-app.post("/", (req, res) => {
-  res.render("index");
-});
 
 app.post("/login", (req, res) => {
-  res.redirect("/");
+  const email = req.body.email;
+  if (email) {
+    return res.redirect("/");
+  }
+  res.render("login");
 });
 
 //POST: logout route
