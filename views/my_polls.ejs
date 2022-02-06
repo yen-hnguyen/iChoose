@@ -18,15 +18,15 @@
         </tr>
       </thead>
       <tbody>
-        <% for(let poll in polls) { %>
+        <% for(let poll of polls) { %>
           <tr>
-            <td><%= poll %></td>
+            <td><%= poll.description %></td>
             <td>
-              <form method="GET" action="/polls/<%= poll %>/">
+              <form method="GET" action="/polls/<%= poll.id %>/">
                 <button type="submit" class="btn btn-outline-primary">View</button>
               </form>
             </td>
-            <td> <form method="POST" action="/polls/<%= poll %>/delete"><button type="submit" class="btn btn-outline-danger">Delete</button></form></td>
+            <td> <form method="POST" action="/polls/<%= poll.id %>/delete"><button type="submit" class="btn btn-outline-danger">Delete</button></form></td>
           </tr>
         <% } %>
       </tbody>

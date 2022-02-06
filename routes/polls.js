@@ -1,4 +1,5 @@
 const express = require('express');
+const res = require('express/lib/response');
 const { render } = require('express/lib/response');
 const router = express.Router();
 const formData = require('form-data');
@@ -115,22 +116,28 @@ module.exports = (db) => {
    */
   router.post("/new", (req, res) => { });
 
+
   //Browse all polls
   router.get("/", (req, res) => {
+    // res.render('my_polls', templateVars);
   /**
   * Get a total submission points.
   * @param {String}.
   * @return {Promise<{}>} JSON on /polls page.
   */
-    const queryString = `SELECT polls.id, polls.description, choices.description AS choice, sum(point) AS total_points
-    FROM polls JOIN choices ON polls.id = poll_id
-    JOIN submissions ON choices.id = choice_id
-    GROUP BY polls.id, choices.description
-    ORDER by polls.id DESC`;
+    // const queryString = `SELECT polls.id, polls.description, choices.description AS choice, sum(point) AS total_points
+    // FROM polls JOIN choices ON polls.id = poll_id
+    // JOIN submissions ON choices.id = choice_id
+    // GROUP BY polls.id, choices.description
+    // ORDER by polls.id DESC`;
+
+    const queryString = `SELECT * FROM polls`;
+
     db.query(queryString)
       .then(data => {
-        const polls = data.rows;
-        res.json({ polls });
+        const templateVars = {polls: data.rows }
+        console.log(templateVars);
+        res.render( 'my_polls', templateVars );
       })
       .catch(err => {
         res
@@ -145,7 +152,7 @@ module.exports = (db) => {
    */
   router.get("/:id", (req, res) => {
     const id = req.params.id;
-    res.json(polls[id - 1]);
+    res.render('poll_result');
     /*
     db.query(`SELECT * FROM polls WHERE id = $1;`, [id])
       .then(data => {
@@ -175,6 +182,19 @@ module.exports = (db) => {
    */
   router.post("/:id/delete", (req, res) => {
     const id = req.params.id;
+    const queryString = `DELETE FROM polls WHERE polls.id = ${id}`;
+
+    db.query(queryString)
+      .then(data => {
+    res.redirect('/polls')
+      })
+      .catch(err => {
+        res
+          .status(500)
+          .json({ error: err.message });
+      });
+
   });
+
   return router;
 };
