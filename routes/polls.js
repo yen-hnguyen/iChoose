@@ -122,11 +122,11 @@ module.exports = (db) => {
   * @param {String}.
   * @return {Promise<{}>} JSON on /polls page.
   */
-    const queryString = `SELECT polls.id, polls.description, choices.description AS choice, sum(point) AS total_points
+    const queryString = `SELECT polls.id, polls.description, choices.title AS choice, sum(point) AS total_points
     FROM polls JOIN choices ON polls.id = poll_id
     JOIN submissions ON choices.id = choice_id
-    GROUP BY polls.id, choices.description
-    ORDER by polls.id DESC`;
+    GROUP BY polls.id, choices.title
+    ORDER by polls.id DESC;`;
     db.query(queryString)
       .then(data => {
         const polls = data.rows;
