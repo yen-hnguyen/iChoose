@@ -44,12 +44,14 @@ app.use(cookieSession({
 const usersRoutes = require("./routes/users");
 const widgetsRoutes = require("./routes/widgets");
 const polls = require('./routes/polls');
+const login = require('./routes/login');
 
 // Mount all resource routes
 // Note: Feel free to replace the example routes below with your own
 app.use("/api/users", usersRoutes(db));
 app.use("/api/widgets", widgetsRoutes(db));
 app.use("/polls", polls(db));
+app.use("/login", login());
 // Note: mount other resources here, using the same pattern above
 
 // Home page
@@ -77,18 +79,10 @@ app.get("/result", (req, res) => {
   res.render("poll_result");
 });
 
-//POST: login route
-
-app.post("/login", (req, res) => {
-  const email = req.body.email;
-  if (email) {
-    return res.redirect("/");
-  }
-  res.render("login");
-});
 
 //POST: logout route
 app.post("/logout", (req, res) => {
+  req.session = null;
   res.redirect("/login");
 });
 
