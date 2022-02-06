@@ -21,9 +21,12 @@ const polls = [{
   user_id: 1,
   title: "X",
   description: "Y",
+
 }];
 
 module.exports = (db) => {
+
+
 
   router.get("/poll", (req, res) => {
     res.render("my_polls");
@@ -35,9 +38,6 @@ module.exports = (db) => {
     res.render("new_poll");
   });
 
-  router.get("/polls", (req, res) => {
-    res.render("my_polls");
-  });
 
   router.post("/new", (req, res) => {
     const formData = req.body.text;
@@ -56,8 +56,16 @@ module.exports = (db) => {
   /**
    * Browse all polls
    */
+
+  // My polls
   router.get("/", (req, res) => {
-    res.json(polls);
+    const templateVars = {polls}
+    res.render("my_polls", templateVars);
+  });
+
+
+
+    // res.json(polls);
     /*
     //After attaching database:
     db.query(`SELECT * FROM polls;`)
@@ -71,8 +79,13 @@ module.exports = (db) => {
           .json({ error: err.message });
       });
     */
-  });
 
+
+
+    router.post("/polls/delete", (req, res) => {
+      delete polls[req.params];
+      res.redirect("my_polls");
+      });
 
   /**
    * Read poll with id

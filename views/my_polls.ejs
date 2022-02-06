@@ -11,6 +11,24 @@
     </header>
 
     <h1>My Polls</h1>
-  </body>
-
-</html>
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">Questions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% for(let poll in polls) { %>
+          <tr>
+            <td><%= poll %></td>
+            <td>
+              <form method="GET" action="/polls/<%= poll %>/">
+                <button type="submit" class="btn btn-outline-primary">View</button>
+              </form>
+            </td>
+            <td> <form method="POST" action="/polls/<%= poll %>/delete"><button type="submit" class="btn btn-outline-danger">Delete</button></form></td>
+          </tr>
+        <% } %>
+      </tbody>
+    </table>
+  </main>
