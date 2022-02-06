@@ -48,15 +48,15 @@ module.exports = (db) => {
     const admin_link = `http://localhost:8080/polls/${pollKey}/result`;
     const submission_link = `http://localhost:8080/polls/${pollKey}`;
 
-    const queryString = ` 
+    const queryString = `
     INSERT INTO polls (user_id, title, description, admin_link, submission_link)
     VALUES ($1, $2, $3, $4, $5)
     RETURNING *`;
-  
+
     const queryValues = [
       userID, title, description, admin_link, submission_link
     ];
-    
+
     db.query(queryString, queryValues)
       .then(data => {
         console.log(data.rows[0]);
@@ -113,16 +113,21 @@ module.exports = (db) => {
   /**
    * Add new poll
    */
-  router.post("/new", (req, res) => {});
+  router.post("/new", (req, res) => { });
 
-  /**
-   * Browse all polls
-   */
+  //Browse all polls
   router.get("/", (req, res) => {
-    res.json(polls);
-    /*
-    //After attaching database:
-    db.query(`SELECT * FROM polls;`)
+  /**
+  * Get a total submission points.
+  * @param {String}.
+  * @return {Promise<{}>} JSON on /polls page.
+  */
+    const queryString = `SELECT polls.id, polls.description, choices.description AS choice, sum(point) AS total_points
+    FROM polls JOIN choices ON polls.id = poll_id
+    JOIN submissions ON choices.id = choice_id
+    GROUP BY polls.id, choices.description
+    ORDER by polls.id DESC`;
+    db.query(queryString)
       .then(data => {
         const polls = data.rows;
         res.json({ polls });
@@ -132,7 +137,7 @@ module.exports = (db) => {
           .status(500)
           .json({ error: err.message });
       });
-    */
+
   });
 
   /**
