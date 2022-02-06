@@ -47,11 +47,11 @@ module.exports = (db) => {
     VALUES ($1, $2, $3, $4, $5)
     RETURNING *`;
   
-    const queryParams = [
+    const queryValues = [
       userID, title, description, admin_link, submission_link
     ];
     
-    db.query(queryString, queryParams)
+    db.query(queryString, queryValues)
       .then(data => {
         console.log(data.rows[0]);
         return data.rows[0];
@@ -60,29 +60,26 @@ module.exports = (db) => {
         const poll_id = poll.id;
         const queryParams = [];
         const queryValues = [];
-        const values = [];
-        let i = 0;
+        let i = 1;
 
         for (const option of pollOptions) {
-          queryValues.push(option);
-          values.push(`$${queryValues.length}`);
+          queryValues.push(poll_id, option);
+          queryParams.push(`($${i}, $${i + 1})`);
+          i += 2;
         }
-        console.log(queryValues);
-        console.log(values);
-        const queryString = `
-        INSERT INTO choices (poll_id, title)
-        VALUES $1`;
 
-        while (i < values.length) {
-          db.query(queryString, [queryValues[i]]);
-          console.log(queryString, [queryValues[i]]);
-          i++;
-        }
+        let queryString = `
+        INSERT INTO choices (poll_id, title)
+        VALUES `;
+
+        queryString += queryParams.join(", ") + ";";
+
+        db.query(queryString, queryValues);
         console.log("I did it");
       })
       .then(() => {
         console.log("Yay");
-        res.render("poll_result");
+        res.redirect('/');
       })
       .catch(err => {
         res
