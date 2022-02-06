@@ -18,6 +18,7 @@
     <!-- BODY TITLE -->
     <h1>Create a new Poll!</h1>
     <div id="form-wrapper">
+<<<<<<< HEAD
       <form action="/polls/new" method="POST" class="poll-creation">
         <div class="poll-name">
           <label for="poll-title">Poll Name:</label>
@@ -34,34 +35,80 @@
           <label for="owner_email">Email: </label>
           <input type="email" required name="email" placeholder="Enter an Email">
         </div>
+=======
+    <form action="/new" method="POST" class="poll-creation">
+      <div class="poll-name">
+        <label for="poll-title">Poll Name:</label>
+        <input class="input-fields" autocomplete="off" type="text" name="poll_title" placeholder="Enter a Poll Name" required>
+      </div>
+
+      <!-- DESCRIPTION FIELD -->
+      <div class="poll_description">
+        <label for="poll-title">Description:</label>
+      <input class="description-field" autocomplete="off" type="text" name="description" placeholder="Description" required>
+
+      <!-- EMAIL FIELD -->
+      <div id="email-field">
+        <label for="owner_email">Email: </label>
+        <input type="email" autocomplete="off" required name="email" placeholder="Enter an Email">
+      </div>
+>>>>>>> 1178555f7c359a42a9eb16e92e7af22e630c6335
 
         <!-- OPTIONS FIELDS 1-->
         <div id="option-fields1">
           <label for="options-label">Option 1:</label>
+<<<<<<< HEAD
           <input class="name-field" type="text" required name="poll_options" placeholder="name">
           <!-- <input class="description-field" type="text" name="description" placeholder="Description"> -->
         </div>
+=======
+          <div class="options-input">
+            <input class="name-field" autocomplete="off" type="text" required name="poll_options" placeholder="name">
+            <input class="description-field" autocomplete="off" type="text" name="description" placeholder="Description">
+          </div>
+>>>>>>> 1178555f7c359a42a9eb16e92e7af22e630c6335
 
         <!-- OPTION FIELDS 2 -->
         <div class="option-fields2">
           <label for="options-label">Option 2:</label>
+<<<<<<< HEAD
           <input class="name-field" type="text" required name="poll_options" placeholder="name">
           <!-- <input class="description-field" type="text" name="description" placeholder="Description"> -->
         </div>
+=======
+          <div class="options-input">
+            <input class="name-field" type="text" autocomplete="off" required name="poll_options" placeholder="name">
+            <input class="description-field" type="text" autocomplete="off" name="description" placeholder="Description">
+          </div>
+>>>>>>> 1178555f7c359a42a9eb16e92e7af22e630c6335
 
         <!-- OPTION FIELDS 3 -->
         <div class="option-fields3">
           <label for="options-label">Option 3:</label>
+<<<<<<< HEAD
           <input class="name-field" type="text" required name="poll_options" placeholder="name">
           <!-- <input class="description-field" type="text" name="description" placeholder="Description"> -->
         </div>
+=======
+          <div class="options-input">
+            <input class="name-field" type="text" autocomplete="off" required name="poll_options" placeholder="name">
+            <input class="description-field" type="text" autocomplete="off" name="description" placeholder="Description">
+          </div>
+>>>>>>> 1178555f7c359a42a9eb16e92e7af22e630c6335
 
         <!-- OPTION FIELDS 4 -->
         <div class="option-fields4">
           <label for="options-label">Option 4:</label>
+<<<<<<< HEAD
           <input class="name-field" type="text" required name="poll_options" placeholder="name">
           <!-- <input class="description-field" type="text" name="description" placeholder="Description"> -->
         </div>
+=======
+          <div class="options-input">
+            <input class="name-field" type="text" required name="poll_options" placeholder="name">
+            <input class="description-field" type="text" autocomplete="off" name="description" placeholder="description">
+          </div>
+>>>>>>> 1178555f7c359a42a9eb16e92e7af22e630c6335
 
         <!-- ADD OPTIONS -->
         <div id="add-option">
