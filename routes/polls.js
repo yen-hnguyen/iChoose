@@ -3,7 +3,7 @@ const { render } = require('express/lib/response');
 const router = express.Router();
 const formData = require('form-data');
 const Mailgun = require('mailgun.js');
-// const { generateRandomString } = require('/scripts/helpers.js');
+// const { generateRandomString } = require('./public/scripts/helpers');
 
 require('dotenv').config();
 const apiKey = process.env.MAILGUN_API;
@@ -25,6 +25,11 @@ const polls = [{
   description: "Y",
 }];
 
+const generateRandomString = function() {
+  return Math.random().toString(36).substring(2,8);
+};
+
+
 module.exports = (db) => {
   //GET: New Poll link
   router.get("/new", (req, res) => {
@@ -39,8 +44,9 @@ module.exports = (db) => {
     const description = data.description;
     const email = data.email;
     const pollOptions = data.poll_options;
-    const admin_link = `http://localhost:8080/polls/result`; // should we add poll id here? random string
-    const submission_link = `http://localhost:8080/polls`;
+    const pollKey = generateRandomString();
+    const admin_link = `http://localhost:8080/polls/${pollKey}/result`; // should we add poll id here? random string
+    const submission_link = `http://localhost:8080/polls/${pollKey}`;
 
     const queryString = ` 
     INSERT INTO polls (user_id, title, description, admin_link, submission_link)
@@ -75,10 +81,21 @@ module.exports = (db) => {
         queryString += queryParams.join(", ") + ";";
 
         db.query(queryString, queryValues);
-        console.log("I did it");
       })
       .then(() => {
-        console.log("Yay");
+        const emailMsg = {
+          from: 'iChoose <yen.hnguyen17@outlook.com>',
+          to: email,
+          subject: 'Test',
+          text: 'Testing mailgun feature',
+          html: "<h1>Testing mailgun feature</h1>"
+        };
+        mg.messages.create(domain, emailMsg)
+          .then(msg => console.log(msg))
+          .catch(err => console.log(err));
+      })
+      .then(() => {
+        console.log("Yay!!!");
         res.redirect('/');
       })
       .catch(err => {
