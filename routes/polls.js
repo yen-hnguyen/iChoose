@@ -43,7 +43,8 @@ module.exports = (db) => {
     const queryString = `SELECT polls.id, polls.description, choices.description AS choice, sum(point) AS total_points
     FROM polls JOIN choices ON polls.id = poll_id
     JOIN submissions ON choices.id = choice_id
-    GROUP BY polls.id, choices.description;`;
+    GROUP BY polls.id, choices.description
+    ORDER by polls.id;`;
     db.query(queryString)
       .then(data => {
         const polls = data.rows;
