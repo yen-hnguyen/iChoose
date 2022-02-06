@@ -28,7 +28,7 @@ INSERT INTO submissions (choice_id, user_id, point) VALUES (4, 4, 3);
 -- poll submissions for Action
 INSERT INTO submissions (choice_id, user_id, point) VALUES (5, 5, 1);
 INSERT INTO submissions (choice_id, user_id, point) VALUES (5, 6, 2);
-INSERT INTO submissions (choice_id, user_id, point) VALUES (5, 8, 2);
+INSERT INTO submissions (choice_id, user_id, point) VALUES (5, 7, 2);
 INSERT INTO submissions (choice_id, user_id, point) VALUES (5, 8, 4);
 
 -- poll submissions for Drama
