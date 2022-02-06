@@ -126,7 +126,7 @@ module.exports = (db) => {
     FROM polls JOIN choices ON polls.id = poll_id
     JOIN submissions ON choices.id = choice_id
     GROUP BY polls.id, choices.description
-    ORDER by polls.id;`;
+    ORDER by polls.id DESC`;
     db.query(queryString)
       .then(data => {
         const polls = data.rows;
