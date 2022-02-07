@@ -20,7 +20,13 @@ $(document).ready(function () {
   pieChart.css({ "width": "500px" });
   pieChart.append(ctx);
 
-  assignChartParams(choiceArray, numPoint, ctx);
+  const pollResponse = $("#responses").html();
+  console.log(pollResponse);
+
+  if(pollResponse !== "Responses: 0" || pollResponse !== "Responses: ") {
+    assignChartParams(choiceArray, numPoint, ctx);
+  }
+
 
 
 });
