@@ -1,7 +1,7 @@
 DROP TABLE IF EXISTS submissions CASCADE;
   CREATE TABLE submissions (
   id SERIAL PRIMARY KEY NOT NULL,
-  choice_id INTEGER REFERENCES choices(id),
+  choice_id INTEGER REFERENCES choices(id) ON DELETE CASCADE,
   user_id INTEGER REFERENCES users(id),
   point SMALLINT
 

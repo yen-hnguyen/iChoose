@@ -6,5 +6,4 @@ CREATE TABLE polls (
   description TEXT,
   admin_link VARCHAR(255),
   submission_link VARCHAR(255)
-
 );
