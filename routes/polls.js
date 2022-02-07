@@ -141,7 +141,7 @@ module.exports = (db) => {
   router.get("/:id", (req, res) => {
     const id = req.params.id;
 
-    const queryString = `SELECT polls.title AS poll_title, polls.description, choices.title AS choices
+    const queryString = `SELECT polls.title AS poll_title, polls.description, choices.title AS choices, choices.id AS choice_id
     FROM polls
     JOIN choices on poll_id = polls.id
     WHERE polls.admin_link LIKE $1;`;
@@ -153,7 +153,8 @@ module.exports = (db) => {
         const templateVars = {
           title: polls[0].poll_title,
           description: (polls[0].description),
-          choices: [polls[0].choices, polls[1].choices, polls[2].choices, polls[3].choices]
+          choices: [polls[0].choices, polls[1].choices, polls[2].choices, polls[3].choices],
+          choice_id: [polls[0].choice_id, polls[1].choice_id, polls[2].choice_id, polls[3].choice_id]
         };
         console.log(templateVars);
         res.render("poll_submission", templateVars);

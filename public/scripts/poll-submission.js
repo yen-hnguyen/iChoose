@@ -12,7 +12,6 @@ $(document).ready(function() {
   //     <li class="options" id="option4">${data[3].title}</li>`
   //   );
   // };
-
   $("#user-votes").sortable({
     cursor: "move",
   }).disableSelection();
