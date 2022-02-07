@@ -1,15 +1,18 @@
 /* eslint-disable no-undef */
 $(document).ready(function() {
-  const addElements = function() {
-    $("#user-votes").empty().append(
-      `<li class="options" id="option1">Hawaii</li>
-      <li class="options" id="option2">Tulum</li>
-      <li class="options" id="option3">Dominican</li>
-      <li class="options" id="option4">Bali</li>`
-    );
-  };
+  // $.get("/polls/choice", data => {
+  //   console.log("data is", data);
+  //   addElements(data.polls);
+  // });
+  // const addElements = function(data) {
+  //   $("#user-votes").empty().append(
+  //     `<li class="options" id="option1">${data[0].title}</li>
+  //     <li class="options" id="option2">${data[1].title}</li>
+  //     <li class="options" id="option3">${data[2].title}</li>
+  //     <li class="options" id="option4">${data[3].title}</li>`
+  //   );
+  // };
 
-  addElements();
   $("#user-votes").sortable({
     cursor: "move",
   }).disableSelection();

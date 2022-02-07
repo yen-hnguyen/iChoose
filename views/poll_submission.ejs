@@ -10,7 +10,7 @@
       <%- include('partials/_header') %>
     </header>
 
-    <h1>Family Summer Trip</h1>
+    <h1><%=title %></h1>
 
     <div class=description></div>
 
@@ -21,7 +21,13 @@
       </div>
 
       <div class="voting-form">
-        <ul class="d-flex flex-column justify-content-center align-items-center voting-options" id="user-votes"></ul>
+        <h3 id="poll-title"><%=description %></h3>
+        <ul class="d-flex flex-column justify-content-center align-items-center voting-options" id="user-votes">
+          <li class="options" id="option1"><%=choices[0] %></li>
+          <li class="options" id="option1"><%=choices[1] %></li>
+          <li class="options" id="option1"><%=choices[2] %></li>
+          <li class="options" id="option1"><%=choices[3] %></li>
+        </ul>
         <div class='d-flex justify-content-center'>
           <button type='submit' class='submit-button'>Submit</button>
         </div>

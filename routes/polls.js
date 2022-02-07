@@ -36,6 +36,7 @@ module.exports = (db) => {
   //   res.render("new_poll");
   // });
 
+
   router.post("/new", (req, res) => {
     const data = req.body;
 
@@ -145,19 +146,30 @@ module.exports = (db) => {
    */
   router.get("/:id", (req, res) => {
     const id = req.params.id;
-    res.json(polls[id - 1]);
-    /*
-    db.query(`SELECT * FROM polls WHERE id = $1;`, [id])
+
+    const queryString = `SELECT polls.title AS poll_title, polls.description, choices.title AS choices
+    FROM polls
+    JOIN choices on poll_id = polls.id
+    WHERE polls.admin_link LIKE $1;`;
+    const queryValues = [`%${id}%`];
+    db.query(queryString, queryValues)
       .then(data => {
         const polls = data.rows;
-        res.json({ polls });
+
+        const templateVars = {
+          title: polls[0].poll_title,
+          description: (polls[0].description),
+          choices: [polls[0].choices, polls[1].choices, polls[2].choices, polls[3].choices]
+        };
+        console.log(templateVars);
+        res.render("poll_submission", templateVars);
       })
       .catch(err => {
         res
           .status(500)
           .json({ error: err.message });
       });
-    */
+
   });
 
   /**
