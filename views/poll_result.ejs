@@ -10,7 +10,28 @@
       <%- include('partials/_header') %>
     </header>
 
-    <h1>Family Summer Trip</h1>
+    <h1><%= pollTitle %></h1>
+
+    <h3 class=description><%= pollDescription %> </h3>
+
+    <div class="result-chart">Result chart shows up here
+      <div id="result-info" style="display: none;">
+        <div id="result-choice"><%=pollChoices %></div>
+        <div id="result-points"><%=total_points %></div>
+      </div>
+
+      <div id="pie-chart"></div>
+    </div>
+
+    <div class="poll-info">
+      <div>Admin Link: <a href="/polls/<%= pollKey %>/result"><%= admin_link %></a></div>
+      <div>Submission Link: <a href="/polls/<%= pollKey %>"><%= submission_link %></a></div>
+      <div>Responses: <%= responses %></div>
+    </div>
+
+    </div>
+    <script type="module" src="/scripts/poll_results.js"></script>
+
   </body>
 
 </html>

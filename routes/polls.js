@@ -31,16 +31,13 @@ const generateRandomString = function() {
 
 
 module.exports = (db) => {
-  //GET: New Poll link
-  // router.get("/polls/new", (req, res) => {
-  //   res.render("new_poll");
-  // });
 
-
+  /**
+   * Add new poll
+   */
   router.post("/new", (req, res) => {
     const data = req.body;
-
-    const userID = 1; // use cookie session to retrieve this
+    const userID = req.session.userId;
     const title = data.poll_title;
     const description = data.description;
     const email = data.email;
@@ -60,7 +57,6 @@ module.exports = (db) => {
 
     db.query(queryString, queryValues)
       .then(data => {
-        console.log(data.rows[0]);
         return data.rows[0];
       })
       .then(poll => {
@@ -87,9 +83,17 @@ module.exports = (db) => {
         const emailMsg = {
           from: 'iChoose <yen.hnguyen17@outlook.com>',
           to: email,
-          subject: 'Test',
-          text: 'Testing mailgun feature',
-          html: "<h1>Testing mailgun feature</h1>"
+          subject: '🗳 You just created a new poll!!! 🗳',
+          html:  `
+          Hey!! 👋
+          <p>You just created a new poll called <strong>${title}</strong>...Now what? 🤗
+          <br>
+          Here is the submission link: ${submission_link} Share it with your group
+          <br>
+          Wanna know the result and how many people voted? Follow this link: ${admin_link}
+          <br>
+          Have fun voting!</p>
+          iChoose Team with 🤍`
         };
         mg.messages.create(domain, emailMsg)
           .then(msg => console.log(msg))
@@ -97,7 +101,7 @@ module.exports = (db) => {
       })
       .then(() => {
         console.log("Yay!!!");
-        res.redirect('/');
+        res.redirect(`/polls/${pollKey}/result`);
       })
       .catch(err => {
         res
@@ -105,16 +109,6 @@ module.exports = (db) => {
           .json({ error: err.message });
       });
   });
-
-  // Result page
-  // router.get("/result", (req, res) => {
-  //   res.render("poll_result");
-  // });
-
-  /**
-   * Add new poll
-   */
-  router.post("/new", (req, res) => { });
 
   //Browse all polls
   router.get("/", (req, res) => {
@@ -142,7 +136,7 @@ module.exports = (db) => {
   });
 
   /**
-   * Read poll with id
+   * Poll submission page
    */
   router.get("/:id", (req, res) => {
     const id = req.params.id;
@@ -163,30 +157,68 @@ module.exports = (db) => {
         };
         console.log(templateVars);
         res.render("poll_submission", templateVars);
+      });
+    });
+
+  /**
+   * Poll result / admin page
+   */
+  router.get("/:id/result", (req, res) => {
+    const pollKey = req.params.id;
+
+    const queryString = `
+    SELECT polls.id, polls.title, polls.description, choices.title AS choice, sum(point) AS total_points, count(choice_id) AS num_of_submission,
+    polls.admin_link, polls.submission_link
+    FROM polls
+    JOIN choices ON polls.id = poll_id
+    LEFT JOIN submissions ON choices.id = choice_id
+    WHERE polls.admin_link LIKE '%${pollKey}%'
+    GROUP BY polls.id, choices.title;`;
+
+    db.query(queryString)
+      .then(result => {
+        const data = result.rows;
+        const title = data[0].title;
+        const description = data[0].description;
+        const pollOptions = [];
+        const responses = data[0].num_of_submission;
+        const admin_link = data[0].admin_link;
+        const submission_link = data[0].submission_link;
+        const total_points = [];
+        data.forEach(obj => {
+          total_points.push(obj.total_points);
+        });
+
+        data.forEach(obj => {
+          pollOptions.push(obj.choice);
+        });
+
+        const templateVars = {
+          pollTitle: title,
+          pollDescription: description,
+          pollChoices: pollOptions,
+          responses: responses,
+          admin_link: admin_link,
+          submission_link: submission_link,
+          pollKey: pollKey,
+          total_points
+        };
+
+        res.render("poll_result", templateVars);
       })
       .catch(err => {
         res
           .status(500)
           .json({ error: err.message });
       });
-
   });
-
-  /**
-   * Edit: User submits poll
-   */
-  // router.post("/:id", (req, res) => { });
-
-  /**
-   * Add: User creates a poll
-   */
 
 
   /**
    * Delete Poll
    */
   router.post("/:id/delete", (req, res) => {
-    const id = req.params.id;
+    const pollKey = req.params.id;
   });
   return router;
 };
