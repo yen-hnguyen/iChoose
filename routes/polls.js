@@ -174,7 +174,8 @@ module.exports = (db) => {
           pollChoices: pollOptions,
           responses: responses,
           admin_link: admin_link,
-          submission_link: submission_link
+          submission_link: submission_link,
+          pollKey: pollKey
         };
 
         res.render("poll_result", templateVars);

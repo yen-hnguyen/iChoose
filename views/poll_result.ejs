@@ -19,8 +19,8 @@
     </div>
 
     <div class="poll-info">
-      <div>Admin Link: <%= admin_link %></div>
-      <div>Submission Link: <%= submission_link %></div>
+      <div>Admin Link: <a href="/polls/<%= pollKey %>/result"><%= admin_link %></a></div>
+      <div>Submission Link: <a href="/polls/<%= pollKey %>"><%= submission_link %></a></div>
       <div>Responses: <%= responses %></div>
     </div>
 
