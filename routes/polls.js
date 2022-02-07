@@ -31,10 +31,6 @@ const generateRandomString = function() {
 
 
 module.exports = (db) => {
-  //GET: New Poll link
-  // router.get("/polls/new", (req, res) => {
-  //   res.render("new_poll");
-  // });
 
   /**
    * Add new poll
@@ -84,21 +80,21 @@ module.exports = (db) => {
 
         db.query(queryString, queryValues);
       })
-      .then(() => {
-        const emailMsg = {
-          from: 'iChoose <yen.hnguyen17@outlook.com>',
-          to: email,
-          subject: 'Test',
-          text: 'Testing mailgun feature',
-          html: "<h1>Testing mailgun feature</h1>"
-        };
-        mg.messages.create(domain, emailMsg)
-          .then(msg => console.log(msg))
-          .catch(err => console.log(err));
-      })
+      // .then(() => {
+      //   const emailMsg = {
+      //     from: 'iChoose <yen.hnguyen17@outlook.com>',
+      //     to: email,
+      //     subject: 'Test',
+      //     text: 'Testing mailgun feature',
+      //     html: "<h1>Testing mailgun feature</h1>"
+      //   };
+      //   mg.messages.create(domain, emailMsg)
+      //     .then(msg => console.log(msg))
+      //     .catch(err => console.log(err));
+      // })
       .then(() => {
         console.log("Yay!!!");
-        res.redirect(`/polls/${pollKey}`);
+        res.redirect(`/polls/${pollKey}/result`);
       })
       .catch(err => {
         res
@@ -135,31 +131,6 @@ module.exports = (db) => {
   /**
    * Poll submission page
    */
-  router.get("/:id", (req, res) => {
-    // const pollKey = req.params.id;
-    // console.log(pollKey);
-    // const queryString = `SELECT polls.id, polls.title, polls.description, choices.title AS choice, sum(point) AS total_points
-    // FROM polls
-    // JOIN choices ON polls.id = poll_id
-    // JOIN submissions ON choices.id = choice_id
-    // WHERE polls.submission_link LIKE '%${pollKey}'
-    // GROUP BY polls.id, choices.title
-    // ORDER by polls.id DESC;`;
-
-
-    /*
-    db.query(`SELECT * FROM polls WHERE id = $1;`, [id])
-      .then(data => {
-        const polls = data.rows;
-        res.json({ polls });
-      })
-      .catch(err => {
-        res
-          .status(500)
-          .json({ error: err.message });
-      });
-    */
-  });
 
   /**
    * Poll result / admin page
@@ -167,35 +138,53 @@ module.exports = (db) => {
   router.get("/:id/result", (req, res) => {
     const pollKey = req.params.id;
 
-    const queryString = `SELECT polls.id, polls.title, polls.description, choices.title AS choice, sum(point) AS total_points
-    FROM polls 
+    const queryString = `
+    SELECT polls.id, polls.title, polls.description, choices.title AS choice, sum(point) AS total_points, count(choice_id) AS num_of_submission,
+    polls.admin_link, polls.submission_link
+    FROM polls
     JOIN choices ON polls.id = poll_id
-    JOIN submissions ON choices.id = choice_id
-    WHERE polls.admin_link LIKE '%${pollKey}'
-    GROUP BY polls.id, choices.title
-    ORDER by polls.id DESC;`;
+    LEFT JOIN submissions ON choices.id = choice_id
+    WHERE polls.admin_link LIKE '%${pollKey}%'
+    GROUP BY polls.id, choices.title;`;
 
-    title = polls.title;
+    db.query(queryString)
+      .then(result => {
+        const data = result.rows;
+        const title = data[0].title;
+        const description = data[0].description;
+        const pollOptions = [];
+        const responses = data[0].num_of_submission;
+        const admin_link = data[0].admin_link;
+        const submission_link = data[0].submission_link;
 
+        data.forEach(obj => {
+          pollOptions.push(obj.choice);
+        });
+        
+        const templateVars = {
+          pollTitle: title,
+          pollDescription: description,
+          pollChoices: pollOptions,
+          responses: responses,
+          admin_link: admin_link,
+          submission_link: submission_link
+        };
 
-    res.render("poll_result", templateVars);
+        res.render("poll_result", templateVars);
+      })
+      .catch(err => {
+        res
+          .status(500)
+          .json({ error: err.message });
+      });
   });
-
-  /**
-   * Edit: User submits poll
-   */
-  // router.post("/:id", (req, res) => { });
-
-  /**
-   * Add: User creates a poll
-   */
 
 
   /**
    * Delete Poll
    */
   router.post("/:id/delete", (req, res) => {
-    const id = req.params.id;
+    const pollKey = req.params.id;
   });
   return router;
 };
