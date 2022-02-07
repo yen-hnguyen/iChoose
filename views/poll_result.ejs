@@ -10,7 +10,21 @@
       <%- include('partials/_header') %>
     </header>
 
-    <h1>Family Summer Trip</h1>
+    <h1><%= pollTitle %></h1>
+
+    <h3 class=description><%= pollDescription %> </h3>
+
+    <div class="result-chart">Result chart shows up here
+      <div id="pie-chart"></div>
+    </div>
+
+    <div class="poll-info">
+      <div>Admin Link: <%= admin_link %></div>
+      <div>Submission Link: <%= submission_link %></div>
+      <div>Responses: <%= responses %></div>
+    </div>
+
+    </div>
   </body>
 
 </html>
