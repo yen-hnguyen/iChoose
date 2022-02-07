@@ -64,7 +64,7 @@ INSERT INTO submissions (choice_id, user_id, point) VALUES (10, 8, 1);
 
 -- poll submissions for Bali
 INSERT INTO submissions (choice_id, user_id, point) VALUES (11, 1, 2);
-INSERT INTO submissions (choice_id, user_id, point) VALUES (11, 6, 4;
+INSERT INTO submissions (choice_id, user_id, point) VALUES (11, 6, 4);
 INSERT INTO submissions (choice_id, user_id, point) VALUES (11, 7, 1);
 INSERT INTO submissions (choice_id, user_id, point) VALUES (11, 8, 3);
 
