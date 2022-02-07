@@ -57,7 +57,6 @@ module.exports = (db) => {
 
     db.query(queryString, queryValues)
       .then(data => {
-        console.log(data.rows[0]);
         return data.rows[0];
       })
       .then(poll => {
@@ -80,18 +79,26 @@ module.exports = (db) => {
 
         db.query(queryString, queryValues);
       })
-      // .then(() => {
-      //   const emailMsg = {
-      //     from: 'iChoose <yen.hnguyen17@outlook.com>',
-      //     to: email,
-      //     subject: 'Test',
-      //     text: 'Testing mailgun feature',
-      //     html: "<h1>Testing mailgun feature</h1>"
-      //   };
-      //   mg.messages.create(domain, emailMsg)
-      //     .then(msg => console.log(msg))
-      //     .catch(err => console.log(err));
-      // })
+      .then(() => {
+        const emailMsg = {
+          from: 'iChoose <yen.hnguyen17@outlook.com>',
+          to: email,
+          subject: '🗳 You just created a new poll!!! 🗳',
+          html:  `
+          Hey!! 👋
+          <p>You just created a new poll called <strong>${title}</strong>...Now what? 🤗
+          <br>
+          Here is the submission link: ${submission_link} Share it with your group
+          <br>
+          Wanna know the result and how many people voted? Follow this link: ${admin_link}
+          <br>
+          Have fun voting!</p>
+          iChoose Team with 🤍`
+        };
+        mg.messages.create(domain, emailMsg)
+          .then(msg => console.log(msg))
+          .catch(err => console.log(err));
+      })
       .then(() => {
         console.log("Yay!!!");
         res.redirect(`/polls/${pollKey}/result`);
