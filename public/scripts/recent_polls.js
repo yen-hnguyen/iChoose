@@ -6,19 +6,23 @@ $(document).ready(function () {
   $.get("/polls", data => {
     const choiceArray = getChoices(data.polls.slice(0,4));
     const pointArray = getPoints(data.polls.slice(0,4));
-
     renderPollData(data.polls[0].description);
-
     const ctx = document.getElementsByClassName("chart")[0];
     assignChartParams(choiceArray, pointArray, ctx);
 
-    const choiceArray2 = getChoices(data.polls.slice(4));
-    const pointArray2 = getPoints(data.polls.slice(4));
-
+    const choiceArray2 = getChoices(data.polls.slice(4, 8));
+    const pointArray2 = getPoints(data.polls.slice(4, 8));
     renderPollData(data.polls[4].description);
-
     const ctx2 = document.getElementsByClassName("chart")[1];
     assignChartParams(choiceArray2, pointArray2, ctx2);
+
+    const choiceArray3 = getChoices(data.polls.slice(8));
+    const pointArray3 = getPoints(data.polls.slice(8));
+    renderPollData(data.polls[8].description);
+    const ctx3 = document.getElementsByClassName("chart")[2];
+    assignChartParams(choiceArray3, pointArray3, ctx3);
+
+
 
 
   });
