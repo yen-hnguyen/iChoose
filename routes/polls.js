@@ -293,8 +293,50 @@ module.exports = (db) => {
   /**
    * Delete Poll
    */
-  router.post("/:id/delete", (req, res) => {
-    const pollKey = req.params.id;
+   router.post("/:id/delete", (req, res) => {
+    const id = req.params.id;
+    const queryString = `DELETE FROM polls WHERE polls.id = ${id}`;
+
+    db.query(queryString)
+      .then(data => {
+    res.redirect('/polls')
+      })
+      .catch(err => {
+        res
+          .status(500)
+          .json({ error: err.message });
+      });
+
   });
+
+  router.get("/", (req, res) => {
+  /**
+  * Get all polls.
+  * @param {String}.
+  * @return {Promise<{}>}
+  */
+
+    const queryString = `SELECT * FROM polls`;
+
+    db.query(queryString)
+      .then(data => {
+        const templateVars = {polls: data.rows }
+        for (const i of templateVars.polls) {
+          let sub_link_id = i.submission_link.replace("http://localhost:8080/polls/", "");
+          i.sub_link_id = sub_link_id;
+
+        }
+        console.log(templateVars);
+        res.render( 'my_polls', templateVars );
+      })
+      .catch(err => {
+        res
+          .status(500)
+          .json({ error: err.message });
+      });
+
+  });
+
+
   return router;
 };
