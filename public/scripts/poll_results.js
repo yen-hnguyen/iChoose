@@ -17,7 +17,7 @@ $(document).ready(function () {
   // `;
   const ctx = $('<canvas id="chart" width="400" height="400"></canvas>');
   const pieChart = $("#pie-chart");
-  pieChart.css({ "width": "500px" });
+  pieChart.css({ "width": "400px" });
   pieChart.append(ctx);
 
   const pollResponse = $("#responses").html();
