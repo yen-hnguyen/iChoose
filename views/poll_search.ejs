@@ -1,38 +1,49 @@
 <!DOCTYPE html>
 <html lang="en">
 
-  <head>
-    <%- include('partials/_head') %>
-  </head>
+<head>
+  <%- include('partials/_head') %>
+</head>
 
-  <body>
-    <header>
-      <%- include('partials/_header') %>
-    </header>
+<body>
+  <header>
+    <%- include('partials/_header') %>
+  </header>
 
-    <h1>Search result</h1>
+  <h1>Search result</h1>
 
-    <table class="table">
+  <table class="table">
+    <% if (polls.length) { %>
       <thead>
         <tr>
           <th scope="col">Questions</th>
         </tr>
       </thead>
+
       <tbody>
         <% for(let poll of polls) { %>
           <tr>
-            <td><%= poll.description %></td>
+            <td>
+              <%= poll.description %>
+            </td>
             <td>
               <form method="GET" action="/polls/<%= poll.sub_link_id %>/">
                 <button type="submit" class="btn btn-outline-primary">View</button>
               </form>
             </td>
-            <td> <form method="POST" action="/polls/<%= poll.sub_link_id %>/delete"><button type="submit" class="btn btn-outline-danger">Delete</button></form></td>
+            <td>
+              <form method="POST" action="/polls/<%= poll.sub_link_id %>/delete"><button type="submit"
+                  class="btn btn-outline-danger">Delete</button></form>
+            </td>
           </tr>
-        <% } %>
-      </tbody>
-    </table>
+          <% } %>
 
-  </body>
+      </tbody>
+      <% } else { %>
+        <div>Sorry no poll result for this search</div>
+        <% } %>
+  </table>
+
+</body>
 
 </html>
