@@ -10,31 +10,27 @@
       <%- include('partials/_header') %>
     </header>
 
+
     <h1><%=title %></h1>
 
     <div class=description></div>
 
+    <h3 id="poll-title"><%=description %></h3>
+
     <div class="d-flex justify-content-around poll-container">
-
-      <div class="result-chart">Result chart shows up here
-        <div id="pie-chart"></div>
-      </div>
-
-      <div class="voting-form">
-        <h3 id="poll-title"><%=description %></h3>
-        <ul class="d-flex flex-column justify-content-center align-items-center voting-options" id="user-votes">
-          <li class="options" id="option1"><%=choices[0] %></li>
-          <li class="options" id="option1"><%=choices[1] %></li>
-          <li class="options" id="option1"><%=choices[2] %></li>
-          <li class="options" id="option1"><%=choices[3] %></li>
+      <form action="" method="POST" id="voting-form">
+        <ul id="sortable" class="d-flex flex-column justify-content-center align-items-center voting-options">
+          <li class="choices" id="<%=choice_id[0] %>"><%=choices[0] %></li>
+          <li class="choices" id="<%=choice_id[1] %>"><%=choices[1] %></li>
+          <li class="choices" id="<%=choice_id[2] %>"><%=choices[2] %></li>
+          <li class="choices" id="<%=choice_id[3] %>"><%=choices[3] %></li>
         </ul>
-        <div class='d-flex justify-content-center'>
-          <button type='submit' class='submit-button'>Submit</button>
-        </div>
-      </div>
+        <input name="ranking" id="ranking" type="hidden" />
+        <input name="submit" value="submit" type="submit" />
+      </form>
+
     </div>
 
-    <script type="module" src="/scripts/poll-sub-chart.js"></script>
   </body>
 
 </html>
