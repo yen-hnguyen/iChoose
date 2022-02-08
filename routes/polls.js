@@ -159,7 +159,7 @@ module.exports = (db) => {
         console.log(templateVars);
         res.render("poll_submission", templateVars);
       });
-    });
+  });
 
   /**
    * Poll result / admin page
@@ -211,6 +211,51 @@ module.exports = (db) => {
         res
           .status(500)
           .json({ error: err.message });
+      });
+  });
+
+  router.post("/:id", (req, res) => {
+    const pollKey = req.params.id;
+    const votes = req.body.ranking.split(',');
+    const choicesID = [];
+    const queryParams = [];
+    const queryValues = [];
+    let userVotes = votes.map(id => Number(id));
+    let points = userVotes.length;
+    let i = 1;
+
+    const queryString = `
+    SELECT polls.title AS poll_title, choices.id AS choice_id, choices.title AS choices
+    FROM polls
+    JOIN choices ON poll_id = polls.id
+    WHERE polls.submission_link LIKE $1;`;
+
+    db.query(queryString, [`%${pollKey}%`])
+      .then(result => {
+        const data = result.rows;
+        data.forEach(obj => {
+          choicesID.push(obj.choice_id);
+        });
+       
+        for (const id of userVotes) {
+          queryValues.push(id, points);
+          queryParams.push(`($${i}, $${i + 1})`);
+          points--;
+          i += 2;
+        }
+
+        let queryString2 = `
+        INSERT INTO submissions (choice_id, point)
+        VALUES `;
+
+        queryString2 += queryParams.join(", ") + ";";
+
+        db.query(queryString2, queryValues);
+
+      })
+      .then(() => {
+        console.log("Yes!");
+        res.redirect(`/polls/${pollKey}/result`);
       });
   });
 
