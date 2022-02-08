@@ -121,7 +121,8 @@ module.exports = (db) => {
     FROM polls JOIN choices ON polls.id = poll_id
     JOIN submissions ON choices.id = choice_id
     GROUP BY polls.id, choices.title
-    ORDER by polls.id DESC;`;
+    ORDER by polls.id DESC
+    LIMIT 12;`;
     db.query(queryString)
       .then(data => {
         const polls = data.rows;
@@ -242,7 +243,7 @@ module.exports = (db) => {
         data.forEach(obj => {
           choicesID.push(obj.choice_id);
         });
-       
+
         for (const id of userVotes) {
           queryValues.push(id, points);
           queryParams.push(`($${i}, $${i + 1})`);
