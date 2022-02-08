@@ -17,8 +17,9 @@
 
     <!-- BODY TITLE -->
     <h1>Create a new Poll!</h1>
+
     <div id="form-wrapper">
-      <form action="/polls/new" method="POST" class="poll-creation">
+      <form action="/polls/new" method="POST" autocomplete="off" class="poll-creation">
         <div class="poll-name">
           <label for="poll-title">Poll Name:</label>
           <input class="input-fields" type="text" name="poll_title" placeholder="Enter a Poll Name" required>
@@ -29,10 +30,11 @@
           <label for="poll-title">Description:</label>
           <input class="description-field" type="text" name="description" placeholder="Description" required>
         </div>
+
         <!-- EMAIL FIELD -->
         <div id="email-field">
-          <label for="owner_email">Email: </label>
-          <input type="email" required name="email" placeholder="Enter an Email">
+          <label for="owner_email">Email:</label>
+          <input type="email" email name="email" placeholder="Enter an Email" required>
         </div>
 
         <!-- OPTIONS FIELDS 1-->
@@ -57,11 +59,6 @@
         <div class="option-fields4">
           <label for="options-label">Option 4:</label>
           <input class="name-field" type="text" required name="poll_options" placeholder="name">
-        </div>
-
-        <!-- ADD OPTIONS -->
-        <div id="add-option">
-          <button class="buttons" id="add-button" type="button">Add Option</button>
         </div>
 
         <!-- SUBMIT SECITON -->
