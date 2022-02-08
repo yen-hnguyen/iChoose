@@ -47,12 +47,12 @@ module.exports = (db) => {
     const submission_link = `http://localhost:8080/polls/${pollKey}`;
 
     const queryString = `
-    INSERT INTO polls (user_id, title, description, admin_link, submission_link)
-    VALUES ($1, $2, $3, $4, $5)
+    INSERT INTO polls (user_id, email, title, description, admin_link, submission_link)
+    VALUES ($1, $2, $3, $4, $5, $6)
     RETURNING *`;
 
     const queryValues = [
-      userID, title, description, admin_link, submission_link
+      userID, email, title, description, admin_link, submission_link
     ];
 
     db.query(queryString, queryValues)
@@ -275,7 +275,7 @@ module.exports = (db) => {
         <br>
         Wanna check out the result and see how many people voted? Follow this link: ${admin_link}
         <br>
-        Have fun voting!</p>
+        Have fun!</p>
         iChoose Team with 🤍`
       };
       mg.messages.create(domain, emailMsg)
