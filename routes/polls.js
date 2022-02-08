@@ -131,6 +131,9 @@ module.exports = (db) => {
     // GROUP BY polls.id, choices.description
     // ORDER by polls.id DESC`;
 
+
+
+
     const queryString = `SELECT * FROM polls`;
 
     db.query(queryString)
