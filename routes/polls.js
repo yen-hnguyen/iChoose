@@ -90,7 +90,7 @@ module.exports = (db) => {
           <br>
           Here is the submission link: ${submission_link} Share it with your group
           <br>
-          Wanna know the result and how many people voted? Follow this link: ${admin_link}
+          Wanna check out the result and see how many people voted? Follow this link: ${admin_link}
           <br>
           Have fun voting!</p>
           iChoose Team with 🤍`
@@ -214,6 +214,10 @@ module.exports = (db) => {
       });
   });
 
+  /**
+   * submit votes page
+   */
+
   router.post("/:id", (req, res) => {
     const pollKey = req.params.id;
     const votes = req.body.ranking.split(',');
@@ -225,14 +229,16 @@ module.exports = (db) => {
     let i = 1;
 
     const queryString = `
-    SELECT polls.title AS poll_title, choices.id AS choice_id, choices.title AS choices
+    SELECT polls.title AS poll_title, admin_link, submission_link, email, choices.id AS choice_id, choices.title AS choices
     FROM polls
     JOIN choices ON poll_id = polls.id
     WHERE polls.submission_link LIKE $1;`;
 
-    db.query(queryString, [`%${pollKey}%`])
+    const promises = db.query(queryString, [`%${pollKey}%`]);
+    promises
       .then(result => {
         const data = result.rows;
+
         data.forEach(obj => {
           choicesID.push(obj.choice_id);
         });
@@ -251,8 +257,31 @@ module.exports = (db) => {
         queryString2 += queryParams.join(", ") + ";";
 
         db.query(queryString2, queryValues);
+        return result;
+      });
+    promises.then((result) => {
+      const data = result.rows;
+      const title = data[0].poll_title;
+      const admin_link = data[0].admin_link;
+      const email = data[0].email;
 
-      })
+      const emailMsg = {
+        from: 'iChoose <yen.hnguyen17@outlook.com>',
+        to: email,
+        subject: '🌟 Someone just voted on your poll 🌟',
+        html:  `
+        Hey!! 👋
+        <p>Someone voted on your <strong>${title}</strong> poll 🙌
+        <br>
+        Wanna check out the result and see how many people voted? Follow this link: ${admin_link}
+        <br>
+        Have fun voting!</p>
+        iChoose Team with 🤍`
+      };
+      mg.messages.create(domain, emailMsg)
+        .then(msg => console.log(msg))
+        .catch(err => console.log(err));
+    })
       .then(() => {
         console.log("Yes!");
         res.redirect(`/polls/${pollKey}/result`);
