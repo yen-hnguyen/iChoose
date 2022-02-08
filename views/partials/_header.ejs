@@ -13,8 +13,8 @@
           <a class="nav-link" href="/new">Create New Poll</a>
         </li>
       </ul>
-      <form class="d-flex">
-        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+      <form class="d-flex" method="POST" action="/polls/search">
+        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="search">
         <button class="btn btn-outline-light me-2" type="submit">Search</button>
       </form>
       <form method="POST" action="/logout">

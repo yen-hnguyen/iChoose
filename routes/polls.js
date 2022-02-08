@@ -216,6 +216,37 @@ module.exports = (db) => {
   });
 
   /**
+   * Search polls
+   */
+  router.post("/search", (req, res) => {
+    const search = req.body.search;
+    console.log(search);
+    const searchString = search.replace(search[0], "");
+    console.log(searchString);
+    const queryParams = [`%${searchString}%`]
+
+    const queryString = `SELECT * FROM polls
+    WHERE title LIKE $1
+    OR description LIKE $1;`;
+
+    db.query(queryString, queryParams)
+      .then(data => {
+        const templateVars = {polls: data.rows }
+        for (const i of templateVars.polls) {
+          let sub_link_id = i.submission_link.replace("http://localhost:8080/polls/", "");
+          i.sub_link_id = sub_link_id;
+        }
+        console.log(templateVars);
+        res.render( 'poll_search', templateVars );
+      })
+      .catch(err => {
+        res
+          .status(500)
+          .json({ error: err.message });
+      });
+  })
+
+  /**
    * submit votes page
    */
 
@@ -308,6 +339,8 @@ module.exports = (db) => {
       });
 
   });
+
+
 
   router.get("/", (req, res) => {
   /**
