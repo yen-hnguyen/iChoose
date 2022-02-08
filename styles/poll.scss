@@ -5,7 +5,7 @@
 
 .voting-options, .result-chart {
   width: 700px;
-  height: 600px;
+  height: 450px;
 }
 
 .voting-options {
@@ -13,17 +13,34 @@
   box-shadow: rgba(0, 0, 0, 0.56) 0px 22px 70px 4px;
 }
 
+#poll-title {
+  text-align: center;
+}
+
 .options {
   display: flex;
   justify-content: center;
   align-items: center;
   width: 600px;
-  height: 100px;
+  height: 75px;
   list-style: none;
   border: 1px solid black;
   border-radius: 25px;
-  font-size: 50px;
+  font-size: 35px;
   margin-top: 20px;
   background-color: #352f44;
   color: #dbd8e3;
+  cursor: pointer;
+}
+.sub-btn {
+  width: 100%;
+  height: 50px;
+  font-size: 25px;
+  border-radius: 15px;
+  border: none;
+}
+
+.sub-btn:hover {
+  background-color: #3f3e41;
+  color: white;
 }
