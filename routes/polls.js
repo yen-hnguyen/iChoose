@@ -324,7 +324,6 @@ module.exports = (db) => {
         for (const i of templateVars.polls) {
           let sub_link_id = i.submission_link.replace("http://localhost:8080/polls/", "");
           i.sub_link_id = sub_link_id;
-
         }
         console.log(templateVars);
         res.render( 'my_polls', templateVars );
