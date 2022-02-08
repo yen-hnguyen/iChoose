@@ -111,7 +111,7 @@ module.exports = (db) => {
   });
 
   //Browse all polls
-  router.get("/", (req, res) => {
+  router.get("/info", (req, res) => {
   /**
   * Get a total submission points.
   * @param {String}.

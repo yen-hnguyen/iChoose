@@ -3,7 +3,7 @@ import { assignChartParams } from "./chart_params.js"
 $(document).ready(function () {
 
   //GET poll from JSON
-  $.get("/polls", data => {
+  $.get("/polls/info", data => {
     const choiceArray = getChoices(data.polls.slice(0,4));
     const pointArray = getPoints(data.polls.slice(0,4));
     renderPollData(data.polls[0].description);
