@@ -37,7 +37,6 @@ const assignChartParams = (optionParams, optionValues, ctx) => {
             if (datasets.indexOf(ctx.dataset) === datasets.length - 1) {
               let sum = datasets[0].data.reduce((a, b) => a + b, 0);
               let percentage = Math.round((value / sum) * 100) + '%';
-              console.log("p",percentage);
               return percentage;
             } else {
               return percentage;
