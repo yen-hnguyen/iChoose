@@ -223,7 +223,7 @@ module.exports = (db) => {
     console.log(search);
     const searchString = search.replace(search[0], "");
     console.log(searchString);
-    const queryParams = [`%${searchString}%`]
+    const queryParams = [`%${searchString}%`];
 
     const queryString = `SELECT * FROM polls
     WHERE title LIKE $1
@@ -231,20 +231,20 @@ module.exports = (db) => {
 
     db.query(queryString, queryParams)
       .then(data => {
-        const templateVars = {polls: data.rows }
+        const templateVars = {polls: data.rows };
         for (const i of templateVars.polls) {
           let sub_link_id = i.submission_link.replace("http://localhost:8080/polls/", "");
           i.sub_link_id = sub_link_id;
         }
         console.log(templateVars);
-        res.render( 'poll_search', templateVars );
+        res.render('poll_search', templateVars);
       })
       .catch(err => {
         res
           .status(500)
           .json({ error: err.message });
       });
-  })
+  });
 
   /**
    * submit votes page
@@ -324,13 +324,13 @@ module.exports = (db) => {
   /**
    * Delete Poll
    */
-   router.post("/:id/delete", (req, res) => {
+  router.post("/:id/delete", (req, res) => {
     const id = req.params.id;
     const queryString = `DELETE FROM polls WHERE polls.id = ${id}`;
 
     db.query(queryString)
       .then(data => {
-    res.redirect('/polls')
+        res.redirect('/polls');
       })
       .catch(err => {
         res
@@ -339,7 +339,6 @@ module.exports = (db) => {
       });
 
   });
-
 
 
   router.get("/", (req, res) => {
@@ -353,13 +352,13 @@ module.exports = (db) => {
 
     db.query(queryString)
       .then(data => {
-        const templateVars = {polls: data.rows }
+        const templateVars = {polls: data.rows };
         for (const i of templateVars.polls) {
           let sub_link_id = i.submission_link.replace("http://localhost:8080/polls/", "");
           i.sub_link_id = sub_link_id;
         }
         console.log(templateVars);
-        res.render( 'my_polls', templateVars );
+        res.render('my_polls', templateVars);
       })
       .catch(err => {
         res
