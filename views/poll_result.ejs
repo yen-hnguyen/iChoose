@@ -12,26 +12,33 @@
 
     <h1><%= pollTitle %></h1>
 
-    <h3 class=description><%= pollDescription %> </h3>
-
-    <div class="result-chart">Result chart shows up here
-      <div id="result-info" style="display: none;">
-        <div id="result-choice"><%=pollChoices %></div>
-        <div id="result-points"><%=total_points %></div>
-      </div>
-      <% if (responses !== '0') { %>
-      <div id="pie-chart"></div>
-      <% } else { %>
+    <div class="result-page">
+      <div class="result-chart">
+        <h3 class="poll-description"><%= pollDescription %> </h3>
+        <div id="result-info" style="display: none;">
+          <div id="result-choice"><%=pollChoices %></div>
+          <div id="result-points"><%=total_points %></div>
+        </div>
+        <% if (responses !== '0') { %>
+        <div id="pie-chart"></div>
+        <% } else { %>
         <div>Sorry there are no poll responses.</div>
-      <% } %>
-    </div>
+        <% } %>
+      </div>
 
-    <div class="poll-info">
-      <div>Admin Link: <a href="/polls/<%= pollKey %>/result"><%= admin_link %></a></div>
-      <div>Submission Link: <a href="/polls/<%= pollKey %>"><%= submission_link %></a></div>
-      <div id="responses">Responses: <%= responses %></div>
-    </div>
-
+      <div class="poll-info">
+        <div>📨 Wanna invite more people to vote? Share this link:
+          </br>
+          <a href="/polls/<%= pollKey %>"><%= submission_link %></a>
+        </div>
+        </br>
+        <div>🗳 Wanna share the result? Use this link:
+          </br>
+          <a href="/polls/<%= pollKey %>/result"><%= admin_link %></a>
+        </div>
+        </br>
+        <div id="responses">🎈 Responses: <%= responses %></div>
+      </div>
     </div>
     <script type="module" src="/scripts/poll_results.js"></script>
 

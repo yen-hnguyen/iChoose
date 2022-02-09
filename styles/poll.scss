@@ -43,13 +43,26 @@
   border: none;
 }
 
+.result-page {
+  display: flex;
+  justify-content: space-around;
+  padding-top: 30px;
+}
+
+.poll-info {
+  display: flex;
+  flex-direction: column;
+  padding-top: 70px;
+}
+
+.poll-description {
+  margin-bottom: 30px;
+  text-align: center;
+}
+
 .voting-options {
   border-radius: 25px;
   box-shadow: rgba(0, 0, 0, 0.56) 0px 22px 70px 4px;
-}
-
-#poll-title {
-  text-align: center;
 }
 
 .options {
