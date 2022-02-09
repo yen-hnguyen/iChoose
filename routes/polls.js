@@ -213,6 +213,7 @@ module.exports = (db) => {
           pollKey: pollKey,
           total_points
         };
+        console.log("Responses: ", templateVars.responses);
 
         res.render("poll_result", templateVars);
       })
