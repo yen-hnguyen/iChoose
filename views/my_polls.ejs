@@ -19,15 +19,18 @@
       </thead>
       <tbody>
         <% for(let poll of polls) { %>
-          <tr>
-            <td><%= poll.description %></td>
-            <td>
-              <form method="GET" action="/polls/<%= poll.sub_link_id %>/">
-                <button type="submit" class="btn btn-outline-primary">View</button>
-              </form>
-            </td>
-            <td> <form method="POST" action="/polls/<%= poll.sub_link_id %>/delete"><button type="submit" class="btn btn-outline-danger">Delete</button></form></td>
-          </tr>
+        <tr>
+          <td><%= poll.description %></td>
+          <td>
+            <form method="GET" action="/polls/<%= poll.sub_link_id %>/result">
+              <button type="submit" class="btn btn-outline-primary">View</button>
+            </form>
+          </td>
+          <td>
+            <form method="POST" action="/polls/<%= poll.sub_link_id %>/delete"><button type="submit"
+                class="btn btn-outline-danger">Delete</button></form>
+          </td>
+        </tr>
         <% } %>
       </tbody>
     </table>

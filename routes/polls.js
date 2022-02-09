@@ -12,18 +12,18 @@ const mailgun = new Mailgun(formData);
 const mg = mailgun.client({username: 'api', key: apiKey});
 
 
-const polls = [{
-  id: 1,
-  user_id: 2,
-  title: "A",
-  description: "B",
-},
-{
-  id: 2,
-  user_id: 1,
-  title: "X",
-  description: "Y",
-}];
+// const polls = [{
+//   id: 1,
+//   user_id: 2,
+//   title: "A",
+//   description: "B",
+// },
+// {
+//   id: 2,
+//   user_id: 1,
+//   title: "X",
+//   description: "Y",
+// }];
 
 const generateRandomString = function() {
   return Math.random().toString(36).substring(2,8);
@@ -41,7 +41,7 @@ module.exports = (db) => {
     const title = data.poll_title;
     const description = data.description;
     const email = data.email;
-    const pollOptions = data.poll_options;
+    const pollOptions = data.poll_options.filter(option => option !== '');
     const pollKey = generateRandomString();
     const admin_link = `http://localhost:8080/polls/${pollKey}/result`;
     const submission_link = `http://localhost:8080/polls/${pollKey}`;
@@ -100,7 +100,6 @@ module.exports = (db) => {
           .catch(err => console.log(err));
       })
       .then(() => {
-        console.log("Yay!!!");
         res.redirect(`/polls/${pollKey}/result`);
       })
       .catch(err => {
@@ -150,14 +149,23 @@ module.exports = (db) => {
     db.query(queryString, queryValues)
       .then(data => {
         const polls = data.rows;
+        const choices = [];
+        const choices_id = [];
+
+        polls.forEach(obj => {
+          choices.push(obj.choices);
+        });
+
+        polls.forEach(obj => {
+          choices_id.push(obj.choice_id);
+        });
 
         const templateVars = {
           title: polls[0].poll_title,
           description: (polls[0].description),
-          choices: [polls[0].choices, polls[1].choices, polls[2].choices, polls[3].choices],
-          choice_id: [polls[0].choice_id, polls[1].choice_id, polls[2].choice_id, polls[3].choice_id]
+          choices: choices,
+          choice_id: choices_id
         };
-        console.log(templateVars);
         res.render("poll_submission", templateVars);
       });
   });
@@ -220,10 +228,8 @@ module.exports = (db) => {
    */
   router.post("/search", (req, res) => {
     const search = req.body.search;
-    console.log(search);
     const searchString = search.replace(search[0], "");
-    console.log(searchString);
-    const queryParams = [`%${searchString}%`]
+    const queryParams = [`%${searchString}%`];
 
     const queryString = `SELECT * FROM polls
     WHERE title LIKE $1
@@ -231,20 +237,19 @@ module.exports = (db) => {
 
     db.query(queryString, queryParams)
       .then(data => {
-        const templateVars = {polls: data.rows }
+        const templateVars = {polls: data.rows };
         for (const i of templateVars.polls) {
           let sub_link_id = i.submission_link.replace("http://localhost:8080/polls/", "");
           i.sub_link_id = sub_link_id;
         }
-        console.log(templateVars);
-        res.render( 'poll_search', templateVars );
+        res.render('poll_search', templateVars);
       })
       .catch(err => {
         res
           .status(500)
           .json({ error: err.message });
       });
-  })
+  });
 
   /**
    * submit votes page
@@ -315,7 +320,6 @@ module.exports = (db) => {
         .catch(err => console.log(err));
     })
       .then(() => {
-        console.log("Yes!");
         res.redirect(`/polls/${pollKey}/result`);
       });
   });
@@ -324,13 +328,14 @@ module.exports = (db) => {
   /**
    * Delete Poll
    */
-   router.post("/:id/delete", (req, res) => {
+  router.post("/:id/delete", (req, res) => {
     const id = req.params.id;
-    const queryString = `DELETE FROM polls WHERE polls.id = ${id}`;
+    console.log(id);
+    const queryString = `DELETE FROM polls WHERE polls.admin_link LIKE '%${id}%'`;
 
     db.query(queryString)
-      .then(data => {
-    res.redirect('/polls')
+      .then(() => {
+        res.redirect('/polls');
       })
       .catch(err => {
         res
@@ -339,7 +344,6 @@ module.exports = (db) => {
       });
 
   });
-
 
 
   router.get("/", (req, res) => {
@@ -353,13 +357,13 @@ module.exports = (db) => {
 
     db.query(queryString)
       .then(data => {
-        const templateVars = {polls: data.rows }
+        const templateVars = {polls: data.rows };
         for (const i of templateVars.polls) {
           let sub_link_id = i.submission_link.replace("http://localhost:8080/polls/", "");
           i.sub_link_id = sub_link_id;
         }
         console.log(templateVars.polls.reverse());
-        res.render( 'my_polls', templateVars );
+        res.render('my_polls', templateVars);
       })
       .catch(err => {
         res
