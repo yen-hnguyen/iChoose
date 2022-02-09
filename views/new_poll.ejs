@@ -20,24 +20,26 @@
 
     <div id="warning-comment">You've reached maximum choices</div>
 
-    <div id="form-wrapper" class="d-block w-10">
-      <form action="/polls/new" method="POST" class="poll-creation d-block">
-        <input class="input-fields d-block" type="text" name="poll_title" placeholder="Poll Name" required>
-        <textarea class="description-field d-block" type="text" name="description" placeholder="What's on your mind?"
+    <div id="new-form-wrapper" class="">
+      <form action="/polls/new" method="POST" class="poll-creation">
+        <textarea class="input-fields" type="text" name="poll_title" placeholder="Enter poll name" required></textarea>
+        <textarea class="description-field " type="text" name="description" placeholder="What's on your mind?"
           required></textarea>
-        <input class="d-block" type="email" required name="email" placeholder="Your Email">
-        <textarea class="name-field" id="choice1" type="text" name="poll_options"
+        <textarea class="user-email" type="email" required name="email" placeholder="Ente your email"></textarea>
+        <textarea class="poll-options" id="choice1" type="text" name="poll_options"
           placeholder="Enter a choice"></textarea>
-        <textarea class="name-field" id="choice2" type="text" name="poll_options"
+        <textarea class="poll-options" id="choice2" type="text" name="poll_options"
           placeholder="Enter a choice"></textarea>
-        <textarea class="name-field" id="choice3" type="text" name="poll_options"
+        <textarea class="poll-options" id="choice3" type="text" name="poll_options"
           placeholder="Enter a choice"></textarea>
-        <textarea class="name-field" id="choice4" type="text" name="poll_options"
+        <textarea class="poll-options" id="choice4" type="text" name="poll_options"
           placeholder="Enter a choice"></textarea>
-        <textarea class="name-field" id="choice5" type="text" name="poll_options"
+        <textarea class="poll-options" id="choice5" type="text" name="poll_options"
           placeholder="Enter a choice"></textarea>
-        <button class="buttons d-block" id="add-option-button" type="button">Add Option</button>
-        <button type='submit' id='poll-submit-button'>Submit</button>
+        <div class="new-poll-button">
+          <button class="btn btn-outline-light" type="button" id="add-option-button">Add Option</button>
+          <button class="btn btn-outline-light" type='submit' id='poll-submit-button'>Submit</button>
+        </div>
       </form>
     </div>
   </body>
