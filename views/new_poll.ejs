@@ -18,52 +18,26 @@
     <!-- BODY TITLE -->
     <h1>Create a new Poll!</h1>
 
-    <div id="form-wrapper">
-      <form action="/polls/new" method="POST" autocomplete="off" class="poll-creation">
-        <div class="poll-name">
-          <label for="poll-title">Poll Name:</label>
-          <input class="input-fields" type="text" name="poll_title" placeholder="Enter a Poll Name" required>
-        </div>
+    <div id="warning-comment">You've reached maximum choices</div>
 
-        <!-- DESCRIPTION FIELD -->
-        <div class="poll_description">
-          <label for="poll-title">Description:</label>
-          <input class="description-field" type="text" name="description" placeholder="Description" required>
-        </div>
-
-        <!-- EMAIL FIELD -->
-        <div id="email-field">
-          <label for="owner_email">Email:</label>
-          <input type="email" email name="email" placeholder="Enter an Email" required>
-        </div>
-
-        <!-- OPTIONS FIELDS 1-->
-        <div id="option-fields1">
-          <label for="options-label">Option 1:</label>
-          <input class="name-field" type="text" required name="poll_options" placeholder="name">
-        </div>
-
-        <!-- OPTION FIELDS 2 -->
-        <div class="option-fields2">
-          <label for="options-label">Option 2:</label>
-          <input class="name-field" type="text" required name="poll_options" placeholder="name">
-        </div>
-
-        <!-- OPTION FIELDS 3 -->
-        <div class="option-fields3">
-          <label for="options-label">Option 3:</label>
-          <input class="name-field" type="text" required name="poll_options" placeholder="name">
-        </div>
-
-        <!-- OPTION FIELDS 4 -->
-        <div class="option-fields4">
-          <label for="options-label">Option 4:</label>
-          <input class="name-field" type="text" required name="poll_options" placeholder="name">
-        </div>
-
-        <!-- SUBMIT SECITON -->
+    <div id="form-wrapper" class="d-block w-10">
+      <form action="/polls/new" method="POST" class="poll-creation d-block">
+        <input class="input-fields d-block" type="text" name="poll_title" placeholder="Poll Name" required>
+        <textarea class="description-field d-block" type="text" name="description" placeholder="What's on your mind?"
+          required></textarea>
+        <input class="d-block" type="email" required name="email" placeholder="Your Email">
+        <textarea class="name-field" id="choice1" type="text" name="poll_options"
+          placeholder="Enter a choice"></textarea>
+        <textarea class="name-field" id="choice2" type="text" name="poll_options"
+          placeholder="Enter a choice"></textarea>
+        <textarea class="name-field" id="choice3" type="text" name="poll_options"
+          placeholder="Enter a choice"></textarea>
+        <textarea class="name-field" id="choice4" type="text" name="poll_options"
+          placeholder="Enter a choice"></textarea>
+        <textarea class="name-field" id="choice5" type="text" name="poll_options"
+          placeholder="Enter a choice"></textarea>
+        <button class="buttons d-block" id="add-option-button" type="button">Add Option</button>
         <button type='submit' id='poll-submit-button'>Submit</button>
-
       </form>
     </div>
   </body>
