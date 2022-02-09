@@ -20,13 +20,12 @@
     <div class="d-flex justify-content-around poll-container">
       <form action="" method="POST" id="voting-form">
         <ul id="sortable" class="d-flex flex-column justify-content-center align-items-center voting-options">
-          <li class="choices options" id="<%=choice_id[0] %>"><%=choices[0] %></li>
-          <li class="choices options" id="<%=choice_id[1] %>"><%=choices[1] %></li>
-          <li class="choices options" id="<%=choice_id[2] %>"><%=choices[2] %></li>
-          <li class="choices options" id="<%=choice_id[3] %>"><%=choices[3] %></li>
+          <% for (let i = 0; i < choices.length; i++) { %>
+          <li class="choices options" id="<%=choice_id[i] %>"><%=choices[i] %></li>
+          <% } %>
         </ul>
         <input name="ranking" id="ranking" type="hidden" />
-        <input  class="sub-btn" name="submit" value="submit" type="submit" />
+        <input class="sub-btn" name="submit" value="submit" type="submit" />
       </form>
 
     </div>
