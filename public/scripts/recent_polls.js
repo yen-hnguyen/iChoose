@@ -3,16 +3,16 @@ import { assignChartParams } from "./chart_params.js"
 $(document).ready(function () {
 
   //Adjust page refresh delay time
-  const delay = 15000;
+  // const delay = 15000;
 
   setTimeout(() => {
     addChartElement();
     createCharts();
   }, 0);
 
-  setInterval(() => {
-    createCharts();
-  }, delay);
+  // setInterval(() => {
+  //   createCharts();
+  // }, delay);
 
   const addChartElement = () => {
     const chosenPolls = $('<section id="chosen-polls"></section>');
