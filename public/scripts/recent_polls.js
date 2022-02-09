@@ -52,6 +52,7 @@ $(document).ready(function () {
   </div>
   `;
     polls.append(pollElement);
+    $(".title").css({"height": "85px"});
     polls.css({ "display": "flex", "justify-content": "space-around" });
   };
 
