@@ -1,4 +1,4 @@
-#new-form-wrapper {
+.new-form-wrapper {
   background-color: #b5c7e2;
   display: flex;
   justify-content: center;
@@ -28,7 +28,6 @@
   margin-top: 10px;
   font-size: 25px;
 }
-
 
 .new-poll-button {
   display: flex;
@@ -60,35 +59,33 @@
   text-align: center;
 }
 
-.voting-options {
-  border-radius: 25px;
-  box-shadow: rgba(0, 0, 0, 0.56) 0px 22px 70px 4px;
+#voting-form {
+  text-align: center;
 }
 
 .options {
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 600px;
+  width: 700px;
   height: 75px;
   list-style: none;
-  border: 1px solid black;
-  border-radius: 25px;
+  border: none;
+  border-radius: 15px;
   font-size: 35px;
   margin-top: 20px;
-  background-color: #352f44;
-  color: #dbd8e3;
-  cursor: pointer;
-}
-.sub-btn {
-  width: 100%;
-  height: 50px;
-  font-size: 25px;
-  border-radius: 15px;
-  border: none;
+  background-color: #59769E;
+  color: #E7EAF6;
 }
 
-.sub-btn:hover {
-  background-color: #3f3e41;
-  color: white;
+.options:hover {
+  cursor: pointer;
+}
+
+.poll-submission-btn {
+  width: 120px;
+  height: 50px;
+  background-color: #59769E;
+  border: none;
+  margin-top: 20px;
 }

@@ -13,23 +13,21 @@
 
     <h1><%=title %></h1>
 
-    <div class=description></div>
-
-    <h3 id="poll-title"><%=description %></h3>
+    <h3 class="description poll-description"><%=description %></h3>
     <br>
 
     <h4>Submit your ranking by dragging the options from top to bottom with the top meaning your first choice!</h4>
     <br>
 
-    <div class="d-flex justify-content-around poll-container">
+    <div class="new-form-wrapper">
       <form action="" method="POST" id="voting-form">
-        <ul id="sortable" class="d-flex flex-column justify-content-center align-items-center voting-options">
+        <ul id="sortable" class="voting-options">
           <% for (let i = 0; i < choices.length; i++) { %>
           <li class="choices options" id="<%=choice_id[i] %>"><%=choices[i] %></li>
           <% } %>
         </ul>
         <input name="ranking" id="ranking" type="hidden" />
-        <input class="sub-btn" name="submit" value="submit" type="submit" />
+        <input class="btn btn-outline-light poll-submission-btn" name="submit" value="Submit" type="submit" />
       </form>
 
     </div>

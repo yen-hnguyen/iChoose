@@ -5,11 +5,14 @@ html {
    height: 100%;
  }
 
- h1 {
+ h1, h3 {
    text-align: center;
+   font-family: 'Acme', sans-serif;
+ }
+
+ h1 {
    font-weight: bold;
    font-size: 70px;
-   font-family: 'Acme', sans-serif;
  }
 
  h4 {
