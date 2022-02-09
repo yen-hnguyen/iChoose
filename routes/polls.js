@@ -358,7 +358,7 @@ module.exports = (db) => {
           let sub_link_id = i.submission_link.replace("http://localhost:8080/polls/", "");
           i.sub_link_id = sub_link_id;
         }
-        console.log(templateVars);
+        console.log(templateVars.polls.reverse());
         res.render( 'my_polls', templateVars );
       })
       .catch(err => {
