@@ -5,7 +5,6 @@ const assignChartParams = (optionParams, optionValues, ctx) => {
       label: 'My First Dataset',
       data: optionValues,
       backgroundColor: [
-        // 'rgb(244, 122, 31)',
         'rgb(206, 169, 188)',
         'rgb(132, 100, 160)',
         'rgb(10, 65, 122)',
