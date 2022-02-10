@@ -16,13 +16,13 @@
         <thead>
           <tr></tr>
         </thead>
-        <tbody class="my-polls">
+        <tbody>
           <% for(let poll of polls) { %>
           <tr>
-            <td align=""><%= poll.description %></td>
+            <td><%= poll.description %></td>
             <td align="right">
               <form method="GET" action="/polls/<%= poll.sub_link_id %>/result">
-                <button type="submit" class="btn btn-outline-primary view-btn ">View</button>
+                <button type="submit" class="btn btn-outline-primary view-btn">View</button>
               </form>
             </td>
             <td align="right">

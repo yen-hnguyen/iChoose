@@ -1,49 +1,45 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
-  <%- include('partials/_head') %>
-</head>
+  <head>
+    <%- include('partials/_head') %>
+  </head>
 
-<body>
-  <header>
-    <%- include('partials/_header') %>
-  </header>
+  <body>
+    <header>
+      <%- include('partials/_header') %>
+    </header>
 
-  <h1>Search result</h1>
-
-  <table class="table">
-    <% if (polls.length) { %>
-      <thead>
-        <tr>
-          <th scope="col">Questions</th>
-        </tr>
-      </thead>
-
-      <tbody>
-        <% for(let poll of polls) { %>
+    <h1>Search result</h1>
+    <div class="my-polls-container">
+      <table class="table">
+        <% if (polls.length) { %>
+        <thead>
           <tr>
-            <td>
-              <%= poll.description %>
-            </td>
-            <td>
+          </tr>
+        </thead>
+        <tbody>
+          <% for(let poll of polls) { %>
+          <tr>
+            <td><%= poll.description %></td>
+            <td align="right">
               <form method="GET" action="/polls/<%= poll.sub_link_id %>/">
-                <button type="submit" class="btn btn-outline-primary">View</button>
+                <button type="submit" class="btn btn-outline-primary view-btn">View</button>
               </form>
             </td>
-            <td>
+            <td align="right">
               <form method="POST" action="/polls/<%= poll.sub_link_id %>/delete"><button type="submit"
-                  class="btn btn-outline-danger">Delete</button></form>
+                  class="btn btn-danger delete-btn">Delete</button></form>
             </td>
           </tr>
           <% } %>
 
-      </tbody>
-      <% } else { %>
+        </tbody>
+        <% } else { %>
         <div>Sorry no poll result for this search</div>
         <% } %>
-  </table>
-
-</body>
+      </table>
+    </div>
+  </body>
 
 </html>
