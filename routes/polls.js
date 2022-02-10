@@ -119,9 +119,12 @@ module.exports = (db) => {
     const queryString = `SELECT polls.id, polls.description, choices.title AS choice, sum(point) AS total_points, admin_link
     FROM polls JOIN choices ON polls.id = poll_id
     JOIN submissions ON choices.id = choice_id
+    WHERE polls.id IN (
+      SELECT polls.id FROM polls
+      ORDER BY polls.id DESC
+      LIMIT 3)
     GROUP BY polls.id, choices.title
-    ORDER by polls.id DESC
-    LIMIT 12;`;
+    ORDER BY polls.id DESC;`;
     db.query(queryString)
       .then(data => {
         const polls = data.rows;
