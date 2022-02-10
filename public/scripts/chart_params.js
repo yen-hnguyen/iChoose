@@ -5,12 +5,14 @@ const assignChartParams = (optionParams, optionValues, ctx) => {
       label: 'My First Dataset',
       data: optionValues,
       backgroundColor: [
-        'rgb(255, 99, 132)',
-        'rgb(54, 162, 235)',
-        'rgb(255, 205, 86)',
-        'rgb(1, 167, 1)'
+        // 'rgb(244, 122, 31)',
+        'rgb(206, 169, 188)',
+        'rgb(132, 100, 160)',
+        'rgb(10, 65, 122)',
+        'rgb(114, 180, 235)',
+        'rgb(32, 133, 236)'
       ],
-      hoverOffset: 4
+      hoverOffset: 5
     }]
   };
 
