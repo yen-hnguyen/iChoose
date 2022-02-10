@@ -11,29 +11,29 @@
     </header>
 
     <h1>My Polls</h1>
-    <table class="table">
-      <thead>
-        <tr>
-          <th scope="col">Questions</th>
-        </tr>
-      </thead>
-      <tbody>
-        <% for(let poll of polls) { %>
-        <tr>
-          <td><%= poll.description %></td>
-          <td>
-            <form method="GET" action="/polls/<%= poll.sub_link_id %>/result">
-              <button type="submit" class="btn btn-outline-primary">View</button>
-            </form>
-          </td>
-          <td>
-            <form method="POST" action="/polls/<%= poll.sub_link_id %>/delete"><button type="submit"
-                class="btn btn-outline-danger">Delete</button></form>
-          </td>
-        </tr>
-        <% } %>
-      </tbody>
-    </table>
+    <div class="my-polls-container">
+      <table class="table">
+        <thead>
+          <tr></tr>
+        </thead>
+        <tbody class="my-polls">
+          <% for(let poll of polls) { %>
+          <tr>
+            <td align=""><%= poll.description %></td>
+            <td align="right">
+              <form method="GET" action="/polls/<%= poll.sub_link_id %>/result">
+                <button type="submit" class="btn btn-outline-primary view-btn ">View</button>
+              </form>
+            </td>
+            <td align="right">
+              <form method="POST" action="/polls/<%= poll.sub_link_id %>/delete"><button type="submit"
+                  class="btn btn-danger delete-btn">Delete</button></form>
+            </td>
+          </tr>
+          <% } %>
+        </tbody>
+      </table>
+    </div>
   </body>
 
 </html>

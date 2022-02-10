@@ -89,3 +89,38 @@
   border: none;
   margin-top: 20px;
 }
+
+.view-btn {
+  background-color: #59769E;
+  color: white;
+  border: none;
+  width: 80px;
+  
+}
+
+.view-btn:hover {
+  background-color: #4e627e;
+  border: none;
+  transform: scale(1.1);
+}
+
+.delete-btn {
+  background-color: #bb2d3b;
+  border: none;
+  width: 80px;
+}
+
+.delete-btn:hover {
+  background-color: #ac2e3b;
+  border: none;
+  transform: scale(1.1)
+}
+
+.my-polls-container {
+  display: flex;
+  justify-content: center;
+}
+
+.table {
+  width: 70%;
+}   
