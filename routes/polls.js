@@ -285,13 +285,17 @@ module.exports = (db) => {
           choicesID.push(obj.choice_id);
         });
 
+        if (userVotes.length === 1) {
+          userVotes = choicesID;
+        }
+
         for (const id of userVotes) {
           queryValues.push(id, points);
           queryParams.push(`($${i}, $${i + 1})`);
           points--;
           i += 2;
         }
-
+        console.log(userVotes);
         let queryString2 = `
         INSERT INTO submissions (choice_id, point)
         VALUES `;
