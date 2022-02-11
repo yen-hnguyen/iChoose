@@ -12,9 +12,9 @@ $(document).ready(function() {
       $(`#choice${i}`).focus();
       i++;
     } else {
-      $('#warning-comment').show("slow");
+      $('#warning-comment').slideDown('slow');
       setTimeout(() => {
-        $('#warning-comment').hide("slow");
+        $('#warning-comment').hide();
       }, 3000);
     }
   });
