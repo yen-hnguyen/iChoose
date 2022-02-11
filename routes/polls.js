@@ -124,7 +124,7 @@ module.exports = (db) => {
       ORDER BY polls.id DESC
       LIMIT 3)
     GROUP BY polls.id, choices.title
-    ORDER BY polls.id DESC;`;
+    ORDER BY polls.id DESC, total_points DESC;`;
     db.query(queryString)
       .then(data => {
         const polls = data.rows;
@@ -186,7 +186,8 @@ module.exports = (db) => {
     JOIN choices ON polls.id = poll_id
     LEFT JOIN submissions ON choices.id = choice_id
     WHERE polls.admin_link LIKE '%${pollKey}%'
-    GROUP BY polls.id, choices.title;`;
+    GROUP BY polls.id, choices.title
+    ORDER BY total_points DESC, choices.title ASC;`;
 
     db.query(queryString)
       .then(result => {

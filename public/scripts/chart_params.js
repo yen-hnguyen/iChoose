@@ -24,7 +24,7 @@ const assignChartParams = (optionParams, optionValues, ctx) => {
       legend: {
         position: 'bottom',
         labels: {
-          fontSize: 20,
+          fontSize: 15,
       }
       },
       plugins: {
@@ -46,7 +46,7 @@ const assignChartParams = (optionParams, optionValues, ctx) => {
           color: '#fff',
           font: {
             weight: 'bold',
-            size: 20,
+            size: 17,
           }
         },
       }
