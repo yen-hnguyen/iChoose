@@ -12,22 +12,8 @@
 
     <h1><%= pollTitle %></h1>
 
-    <div class="result-page">
-      <div class="result-chart">
-        <h3 class="poll-description"><%= pollDescription %> </h3>
-        <div id="result-info" style="display: none;">
-          <div id="result-choice"><%=pollChoices %></div>
-          <div id="result-points"><%=total_points %></div>
-        </div>
-        <% if (responses !== '0') { %>
-        <div id="pie-chart"></div>
-        <% } else { %>
-        <div class="comment">Yay!! You did it 🙌 . Now share it with your group and wait for their
-          response..</div>
-        <% } %>
-      </div>
-
-      <div class="poll-info">
+    <div class="row result-page">
+      <div class="poll-info col-5">
         <div>📨 Wanna invite more people to vote? Share this link:
           </br>
           <a href="/polls/<%= pollKey %>"><%= submission_link %></a>
@@ -39,7 +25,26 @@
         </div>
         </br>
         <div id="responses">🎈 Responses: <%= responses %></div>
+        <img src="/images/iChoose.png" alt="iChoose Logo" style="width: 400px">
       </div>
+
+      <div class="result-chart col-7">
+        <div id="result-info" style="display: none;">
+          <div id="result-choice"><%=pollChoices %></div>
+          <div id="result-points"><%=total_points %></div>
+        </div>
+        <% if (responses !== '0') { %>
+        <h3 class="poll-description"><%= pollDescription %> </h3>
+        <div id="pie-chart"></div>
+        <% } else { %>
+        <div class="comment">
+          <p>Yay!! You did it 🙌 . Now share it with your group and wait for their
+            response..
+          </p>
+        </div>
+        <% } %>
+      </div>
+
     </div>
     <script type="module" src="/scripts/poll_results.js"></script>
 
