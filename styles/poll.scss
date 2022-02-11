@@ -23,10 +23,11 @@
   outline: none;
   font-size: 20px; 
   padding-top: 10px;
-  font-family: 'Indie Flower', cursive;
+  font-family: 'Short Stack', cursive;
   width: 700px;
   margin-top: 10px;
   font-size: 25px;
+  height: 70px;
 }
 
 .new-poll-button {
@@ -124,3 +125,7 @@
 .table {
   width: 70%;
 }   
+
+.polls-list {
+  font-family: 'Short Stack', cursive;
+}
