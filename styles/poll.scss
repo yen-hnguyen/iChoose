@@ -26,7 +26,7 @@
   font-family: 'Short Stack', cursive;
   width: 700px;
   margin-top: 10px;
-  font-size: 25px;
+  font-size: 20px;
   height: 70px;
 }
 
@@ -46,18 +46,31 @@
 .result-page {
   display: flex;
   justify-content: space-around;
-  padding-top: 30px;
 }
 
 .poll-info {
   display: flex;
   flex-direction: column;
   padding-top: 70px;
+  padding-left: 50px;
+  font-family: 'Short Stack', cursive;
+}
+
+.result-chart {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+#pie-chart {
+  display: flex;
+  align-self: center;
 }
 
 .poll-description {
-  margin-bottom: 30px;
+  margin-bottom: 40px;
   text-align: center;
+  font-family: 'Short Stack', cursive;
 }
 
 #voting-form {
