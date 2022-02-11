@@ -25,7 +25,7 @@ const assignChartParams = (optionParams, optionValues, ctx) => {
         position: 'bottom',
         labels: {
           fontSize: 15,
-      }
+        }
       },
       plugins: {
         title: {
@@ -45,8 +45,8 @@ const assignChartParams = (optionParams, optionValues, ctx) => {
           },
           color: '#fff',
           font: {
-            weight: 'bold',
-            size: 17,
+            // weight: 'bold',
+            size: 15,
           }
         },
       }
