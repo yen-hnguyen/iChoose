@@ -267,7 +267,6 @@ module.exports = (db) => {
     const queryParams = [];
     const queryValues = [];
     let userVotes = votes.map(id => Number(id));
-    let points = userVotes.length;
     let i = 1;
 
     const queryString = `
