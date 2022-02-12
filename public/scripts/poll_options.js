@@ -14,7 +14,7 @@ $(document).ready(function() {
     } else {
       $('#warning-comment').slideDown('slow');
       setTimeout(() => {
-        $('#warning-comment').hide();
+        $('#warning-comment').slideUp('slow');
       }, 3000);
     }
   });
